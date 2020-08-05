@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import "../index.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Signup from "./Signup";
@@ -23,6 +21,7 @@ export class Loginpage extends Component {
     this.state = {
       Username: "",
       password: "",
+      confirmPassword: "",
       authenticated: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -63,115 +62,339 @@ export class Loginpage extends Component {
     });
   }
 
+  toogleDisplay = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const login = document.getElementById("myform");
+    const register = document.getElementById("myform2");
+    login.classList.toggle("hideme");
+    register.classList.toggle("hideme");
+  };
+
+  loginRoute = (event) => {
+    event.preventDefault();
+    console.log("You are submitting " + this.state.Username);
+    this.props.history.push("/selectmail");
+  };
+
+  registerRoute = (event) => {
+    event.preventDefault();
+    alert("You are submitting " + this.state.Username);
+    this.state.password === this.state.confirmPassword
+      ? this.props.history.push("/selectmail")
+      : alert("Password and Confirm Password are not Identical");
+  };
+
   render() {
     return (
       <div className="background">
-        <Container style={{ position: "relative" }}>
-          <Row>
-            <Col xs></Col>
-            <Col xs={{ order: 12 }}></Col>
-            <Col xs={{ order: 1 }}>
-              {/* main form */}
-              <div id="newstyle">
-                <Form onSubmit={this.mySubmitHandler} style={{}}>
-                  <Form.Label
+        <div className="container">
+          <div className="row d-flex justify-content-center ">
+            <div className="col-10 col-md-4">
+              {/* login */}
+              <form
+                id="myform"
+                class="formsignup hideme"
+                style={{
+                  // backgroundColor: "white",
+                  // boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
+                  paddingBottom: "3rem",
+                }}
+              >
+                <label
+                  className="control-label"
+                  style={{
+                    fontSize: "15px",
+                    position: "relative",
+                    width: "100%",
+                    textAlign: "left",
+                    top: "25%",
+                    display: "inline-block",
+                  }}
+                >
+                  <div
                     style={{
-                      fontSize: "15px",
-                      position: "relative",
-                      width: "100%",
-                      textAlign: "left",
-                      top: "10%",
-                      display: "inline-block",
+                      color: "#707070",
+                      fontFamily: "Poppins",
                     }}
+                    className="robot"
                   >
-                    <div
+                    <p>GTBank API Connect</p>
+                    <p>Email Service Platform</p>
+                  </div>
+                  <div>
+                    <img
+                      src={logo}
                       style={{
-                        color: "#707070",
-                        fontFamily: "Poppins",
+                        width: "20%",
+                        position: "absolute",
+                        top: "-8%",
+                        left: "80%",
                       }}
-                      className="robot"
+                    />
+                  </div>
+                </label>
+                <br />
+                <br />
+                <br />
+                <div
+                  className="form-group"
+                  // style={{ border: "1px solid rgb(217,78,0) !important" }}
+                >
+                  <div className="input-group">
+                    <div
+                      class="input-group-addon borderss"
+                      style={{
+                        borderRight: "0",
+                        backgroundColor: "#eeeeee",
+                        borderBottomLeftRadius: "0",
+                      }}
                     >
-                      <p>GTBank API Connect</p>
-                      <p>Email Service Platform</p>
+                      <i class="fa fa-envelope-o"></i>
                     </div>
-                    <div>
-                      <img
-                        src={logo}
-                        style={{
-                          width: "20%",
-                          position: "absolute",
-                          top: "-30%",
-                          left: "80%",
-                        }}
-                      />
-                    </div>
-                  </Form.Label>
-                  <br />
-                  <br />
-                  <i class="fas fa-envelope"></i>
-                  <br />
-                  <Form.Group
-                    controlId="formBasicEmail"
-                    style={{ border: "1px solid rgb(217,78,0) !important" }}
-                  >
                     <Form.Control
-                      className="borderss"
+                      className="borderss stbnbd"
                       value={this.state.Username}
                       name="Username"
                       type="Username"
-                      placeholder="Username"
+                      placeholder="johnjane@example.com"
                       onChange={this.handleChange}
+                      style={{
+                        borderLeft: "0",
+                        borderBottomRightRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
                     />
-                  </Form.Group>
-                  <br />
-                  <Form.Group controlId="formBasicPassword">
+                  </div>
+
+                  <div className="input-group">
+                    <div
+                      class="input-group-addon borderss borderNone"
+                      style={{
+                        borderRight: "0",
+                        borderRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
+                    >
+                      <i class="fa fa-key"></i>
+                    </div>
+
                     <Form.Control
-                      className="borderss"
+                      className="borderss borderNone"
                       value={this.state.password}
                       name="password"
                       type="password"
-                      placeholder="Password"
+                      placeholder="******************"
                       onChange={this.handleChange}
+                      style={{
+                        borderLeft: "0",
+                        borderRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
                     />
-                  </Form.Group>
-                  <br />
-                  <br />
-                  <Form.Group
-                    controlId="formBasicCheckbox"
-                    style={{ textAlign: "left" }}
-                  >
-                    <Form.Check
-                      className="checkers"
-                      className="remember"
+                  </div>
+                  <div className="input-group">
+                    <div
+                      class="input-group-addon borderss borderNone"
+                      style={{
+                        borderRight: "0",
+                        backgroundColor: "#eeeeee",
+                        borderTopLeftRadius: "0",
+                      }}
+                    >
+                      <i class="fa fa-key"></i>
+                    </div>
+
+                    <Form.Control
+                      className="borderss borderNone stbnbd2"
+                      value={this.state.confirmPassword}
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Confirm Password"
+                      onChange={this.handleChange}
+                      style={{
+                        borderLeft: "0",
+                        fontSize: "1rem",
+                        borderTopRightRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="form-group d-flex justify-content-start pr-0">
+                  <div class="form-check shift ">
+                    <input
                       type="checkbox"
-                      label="Remember me"
+                      class="form-check-input"
+                      id="exampleCheck1"
                     />
-                  </Form.Group>
-                  <Form.Group style={{ paddingTop: "5px" }}>
-                    <Button
-                      className="white"
-                      size="sm"
-                      type="submit"
-                      style={{ float: "left" }}
+                    <label class="form-check-label" for="exampleCheck1">
+                      Check me out
+                    </label>
+                  </div>
+                </div>
+
+                <Form.Group style={{ paddingTop: "5px" }}>
+                  <Button
+                    className="loginbut"
+                    size="sm"
+                    style={{
+                      float: "left",
+                    }}
+                    onClick={this.toogleDisplay}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    onClick={this.registerRoute}
+                    className="orange"
+                    size="sm"
+                    style={{ float: "right" }}
+                  >
+                    Create Account
+                  </Button>
+                </Form.Group>
+              </form>
+              {/* loginform */}
+              <form
+                id="myform2"
+                class="formsignup"
+                style={{
+                  // backgroundColor: "white",
+                  // boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
+                  paddingBottom: "3rem",
+                }}
+              >
+                <label
+                  className="control-label"
+                  style={{
+                    fontSize: "15px",
+                    position: "relative",
+                    width: "100%",
+                    textAlign: "left",
+                    top: "25%",
+                    display: "inline-block",
+                  }}
+                >
+                  <div
+                    style={{
+                      color: "#707070",
+                      fontFamily: "Poppins",
+                    }}
+                    className="robot"
+                  >
+                    <p>GTBank API Connect</p>
+                    <p>Email Service Platform</p>
+                  </div>
+                  <div>
+                    <img
+                      src={logo}
+                      style={{
+                        width: "20%",
+                        position: "absolute",
+                        top: "-8%",
+                        left: "80%",
+                      }}
+                    />
+                  </div>
+                </label>
+                <br />
+                <br />
+                <br />
+                <div
+                  className="form-group"
+                  // style={{ border: "1px solid rgb(217,78,0) !important" }}
+                >
+                  <div className="input-group">
+                    <div
+                      class="input-group-addon borderss"
+                      style={{
+                        borderRight: "0",
+                        backgroundColor: "#eeeeee",
+                        borderBottomLeftRadius: "0",
+                      }}
                     >
-                      Login
-                    </Button>
-                    <Button
-                      className="orange"
-                      size="sm"
-                      type="submit"
-                      style={{ float: "right" }}
+                      <i class="fa fa-envelope-o"></i>
+                    </div>
+                    <Form.Control
+                      className="borderss stbnbd"
+                      value={this.state.Username}
+                      name="Username"
+                      type="Username"
+                      placeholder="johnjane@example.com"
+                      onChange={this.handleChange}
+                      style={{
+                        borderLeft: "0",
+                        borderBottomRightRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
+                    />
+                  </div>
+
+                  <div className="input-group">
+                    <div
+                      class="input-group-addon borderss borderNone"
+                      style={{
+                        borderRight: "0",
+                        borderTopLeftRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
                     >
-                      Register
-                    </Button>
-                  </Form.Group>
-                </Form>
-              </div>
-              <br />
-              <div></div>
-            </Col>
-          </Row>
-        </Container>
+                      <i class="fa fa-key"></i>
+                    </div>
+
+                    <Form.Control
+                      className="borderss borderNone"
+                      value={this.state.password}
+                      name="password"
+                      type="password"
+                      placeholder="***************"
+                      onChange={this.handleChange}
+                      style={{
+                        borderLeft: "0",
+                        borderTopRightRadius: "0",
+                        backgroundColor: "#eeeeee",
+                      }}
+                    />
+                  </div>
+                </div>
+                <br />
+
+                <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check
+                    className="shift"
+                    type="checkbox"
+                    label="Check me out"
+                  />
+                </Form.Group>
+
+                <Form.Group style={{ paddingTop: "5px" }}>
+                  <Button
+                    className="orange"
+                    size="sm"
+                    type="submit"
+                    style={{
+                      float: "left",
+                    }}
+                    onClick={this.loginRoute}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    className="loginbut"
+                    size="sm"
+                    type="submit"
+                    style={{ float: "right" }}
+                    onClick={this.toogleDisplay}
+                  >
+                    Create Account
+                  </Button>
+                </Form.Group>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

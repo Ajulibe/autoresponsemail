@@ -1,0 +1,302 @@
+//VARIABLES
+$orange-button: #d94f00;
+$darkenamount: 10%;
+
+.small-button > button {
+  width: 25%;
+  background-color: $orange-button;
+
+  &:hover {
+    background-color: darken($orange-button, $darkenamount);
+  }
+}
+
+.small-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+.formdistance {
+  margin-top: 10%;
+}
+
+.gtlogs {
+}
+
+.selectmail {
+  // background-image: url("./components/bird.png");
+  background-image: url("../components/BackgroundImage.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #2f2f2f;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1.1rem 1.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.allMails:active,
+.allMails:focus {
+  outline: none;
+  background-color: white;
+  color: white;
+}
+
+@media screen and (max-width: 767px) {
+  .formUp {
+    margin-top: 5% !important;
+  }
+
+  .buttonwidth {
+    width: 46% !important;
+  }
+
+  .GtDiv {
+    display: none;
+  }
+
+  .gtlogs {
+    width: 4rem !important;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  #mailLogo {
+    margin-top: 0.1rem !important;
+  }
+  // .deletePad {
+  //   padding: 0 !important;
+  //   border: 1px solid black;
+  // }
+}
+
+@media screen and (max-width: 320px) {
+  .buttons {
+    margin-top: -34px !important;
+    margin-left: 30px;
+    display: inline-block;
+    height: 2rem;
+    left: 10px;
+  }
+  .navigation {
+    margin-left: -3rem;
+  }
+
+  .homesf {
+    display: none !important;
+  }
+
+  .buttons2 {
+    padding-right: 0px;
+  }
+  .srmv {
+    margin-right: -40px;
+
+    display: none;
+  }
+  .deletePad {
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .deletePad {
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .buttons {
+    margin-top: -34px !important;
+    margin-left: 30px;
+    display: inline-block;
+    height: 2rem;
+    left: 10px;
+  }
+  .navigation {
+    margin-left: -3rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .previewImg {
+    width: 23rem !important;
+    margin-left: -4%;
+  }
+
+  .previewDiv {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .previewImg {
+    width: 18rem !important;
+    margin-left: -8%;
+  }
+
+  .previewDiv {
+    margin: auto;
+  }
+}
+
+$color-primary: #2f2f2f; //yellow color
+$color-secondary: #f08a5d; //orange
+$color-tertiary: #b83b5e; //pink
+$color-text-dark: #333;
+$color-text-light: #eee;
+
+$width-button: 150px;
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin style-link-text($color) {
+  text-decoration: none;
+  color: $color;
+}
+
+nav {
+  margin: 0;
+  background-color: $color-primary;
+  width: 100vw;
+  height: 4rem;
+  @include clearfix;
+}
+
+.navigation {
+  list-style: none;
+  float: left;
+
+  li {
+    display: inline-block;
+    margin-left: 30px;
+
+    &:first-child {
+      margin: 0;
+    }
+    &:last-child {
+      margin-right: 1rem;
+    }
+
+    a:link {
+      @include style-link-text($color-text-light);
+      font-size: 1rem;
+    }
+  }
+}
+
+.buttons {
+  float: right;
+  margin-right: 1rem;
+  padding-top: 0.4rem;
+
+  input[type="search"] {
+    border: 1px solid white;
+    border-radius: 3rem;
+    background-color: $color-primary;
+    color: white !important;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      background-color: white;
+      color: $color-primary !important;
+    }
+  }
+}
+
+%btn-placeholder {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  border-radius: 100px;
+  width: $width-button;
+  @include style-link-text($color-text-light);
+}
+
+.btn-main {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-secondary;
+  }
+  &:hover {
+    background-color: darken($color-secondary, 15%);
+  }
+}
+
+.btn-hot {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-tertiary;
+  }
+  &:hover {
+    background-color: darken($color-tertiary, 10%);
+  }
+}
+
+.input-group-addon {
+  color: $orange-button;
+  background-color: #ffffff;
+}
+
+.navigation2 {
+  list-style: none;
+  float: right;
+
+  li {
+    display: inline-block;
+    margin-left: 30px;
+
+    &:first-child {
+      margin: 0;
+    }
+    &:last-child {
+      margin-right: 1rem;
+    }
+
+    a:link {
+      @include style-link-text($color-text-light);
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .buttonwidth {
+    width: 120% !important;
+  }
+
+  .logoTop {
+    margin-left: 87% !important;
+    margin-top: 1%;
+  }
+}
+
+.orange:hover {
+  background-color: darken($orange-button, 100%) !important;
+}
+
+a:hover {
+  color: darken($orange-button, 10%) !important;
+}
