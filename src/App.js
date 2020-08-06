@@ -7,18 +7,26 @@ import Selectmail from "./components/Selectmail";
 
 function App() {
   return (
-    <div className="App">
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/">
-            <Loginpage />
-          </Route>
-          <Route exact path="/selectmail">
-            <Selectmail />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    // <Router history={history}>
+    //   <Switch>
+    //     <Route exact path="/">
+    //       <Loginpage />
+    //     </Route>
+    //     <Route exact path="/selectmail">
+    //       <Selectmail />
+    //     </Route>
+    //   </Switch>
+    // </Router>
+    <>
+      <Switch>
+        <Route exact path="/">
+          <Loginpage />
+        </Route>
+        <Route exact path="/selectmail">
+          <Selectmail />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

@@ -71,7 +71,11 @@
     margin-right: -40px;
     display: none; }
   .deletePad {
-    padding: 0 !important; } }
+    padding: 0 !important; }
+  .orange {
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    font-family: Roboto; } }
 
 @media screen and (max-width: 450px) {
   .deletePad {
@@ -99,7 +103,11 @@
     width: 18rem !important;
     margin-left: -8%; }
   .previewDiv {
-    margin: auto; } }
+    margin: auto; }
+  .orange {
+    font-size: 0.5rem !important;
+    font-weight: 300;
+    font-family: Roboto; } }
 
 nav {
   margin: 0;
@@ -186,7 +194,9 @@ nav {
     width: 120% !important; }
   .logoTop {
     margin-left: 87% !important;
-    margin-top: 1%; } }
+    margin-top: 1%; }
+  .reloadPg:hover {
+    color: #a63c00 !important; } }
 
 .orange:hover {
   background-color: black !important; }
@@ -286,110 +296,3 @@ html {
 .hideme {
   display: none;
   transition: all 0.2s; }
-
-/* media queries */
-/* @media screen and (max-width: 831px) {
-    form {
-      margin-top: 20%;
-      height: 40%;
-    }
-  }
-  
-  .background {
-  }
-  
-  @media screen and (max-width: 1366px) {
-    form {
-      margin-top: 10%;
-      height: 40%;
-    } */
-/* #newstyle {
-      margin-top: 10%;
-     
-  
-      margin-left: -10%;
-    }
-  
-    .background2 {
-      top: 0px;
-      height: 100%;
-      background-size: cover;
-    }
-  }
-  
-  #searchbox {
-    margin-top: 25%;
-    width: 50%;
-    margin-left: 25%;
-    background-color: white;
-    padding: 30px 25px 25px 25px;
-    font-size: small;
-  }
-  
-  .background3 {
-    padding-bottom: 50px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  } */
-/* @media screen and (min-width: 1024px) {
-    .background {
-      top: 0px;
-    }
-  
-    #newstyle {
-      margin-left: -25%;
-      margin-top: 80%;
-    }
-  
-    .background2 {
-      top: 0px;
-      height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  } */
-/* @media screen and (min-width: 768px) {
-    .background {
-      top: 0px;
-    }
-  
-    #newstyle {
-      width: 130%;
-      margin-left: -20%;
-      margin-top: 80%;
-    }
-  
-    .background2 {
-      top: 0px;
-      height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  }
-  
-  @media screen and (max-width: 767px) {
-    #newstyle {
-      width: 200%;
-      margin-left: -50%;
-      margin-top: 60%;
-    }
-  
-    #searchbox {
-      width: 60%;
-      margin-left: 20%;
-      margin-top: 20%;
-    }
-  
-    .background3 {
-      top: 0px;
-      height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  } */

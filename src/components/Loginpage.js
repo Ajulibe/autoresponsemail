@@ -25,31 +25,32 @@ export class Loginpage extends Component {
       authenticated: false,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.mySubmitHandler = this.mySubmitHandler.bind(this);
+    // this.mySubmitHandler = this.mySubmitHandler.bind(this);
+    this.registerRoute = this.registerRoute.bind(this);
   }
 
-  mySubmitHandler = (event) => {
-    event.preventDefault();
-    console.log("You are submitting " + this.state);
-    //posting state data
-    const { Username, password } = this.state;
-    axios
-      .post("https://nodebackenddb.herokuapp.com/signin", {
-        Username: Username,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        if (response.data === "logged in") {
-          this.props.history.push("/navbar");
-        }
-      })
+  // mySubmitHandler = (event) => {
+  //   event.preventDefault();
+  //   console.log("You are submitting " + this.state);
+  //   //posting state data
+  //   const { Username, password } = this.state;
+  //   axios
+  //     .post("https://nodebackenddb.herokuapp.com/signin", {
+  //       Username: Username,
+  //       password: password,
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       if (response.data === "logged in") {
+  //         this.props.history.push("/navbar");
+  //       }
+  //     })
 
-      .catch((error) => {
-        console.log("We are getting this error:");
-        console.log(error.response);
-      });
-  };
+  //     .catch((error) => {
+  //       console.log("We are getting this error:");
+  //       console.log(error.response);
+  //     });
+  // };
 
   handleChange(event) {
     event.stopPropagation();
@@ -77,13 +78,12 @@ export class Loginpage extends Component {
     this.props.history.push("/selectmail");
   };
 
-  registerRoute = (event) => {
-    event.preventDefault();
+  registerRoute(event) {
     alert("You are submitting " + this.state.Username);
     this.state.password === this.state.confirmPassword
       ? this.props.history.push("/selectmail")
       : alert("Password and Confirm Password are not Identical");
-  };
+  }
 
   render() {
     return (
@@ -246,7 +246,9 @@ export class Loginpage extends Component {
                   >
                     Login
                   </Button>
+                  {/* <Link to="/selectmail"> */}
                   <Button
+                    type="submit"
                     onClick={this.registerRoute}
                     className="orange"
                     size="sm"
@@ -254,6 +256,7 @@ export class Loginpage extends Component {
                   >
                     Create Account
                   </Button>
+                  {/* </Link> */}
                 </Form.Group>
               </form>
               {/* loginform */}

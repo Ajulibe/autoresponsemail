@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./sass/index.css";
 // import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { Switch, Route } from "react-router-dom";
+import Loginpage from "./components/Loginpage";
+import Selectmail from "./components/Selectmail";
+import Signup from "./components/Signup";
+import history from "./history";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter history={history}>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

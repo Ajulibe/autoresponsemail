@@ -12,7 +12,6 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.1",
-    "history": "^5.0.0",
     "mdbreact": "^4.27.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

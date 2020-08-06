@@ -112,6 +112,11 @@ $darkenamount: 10%;
   .deletePad {
     padding: 0 !important;
   }
+  .orange {
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    font-family: Roboto;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -152,6 +157,11 @@ $darkenamount: 10%;
 
   .previewDiv {
     margin: auto;
+  }
+  .orange {
+    font-size: 0.5rem !important;
+    font-weight: 300;
+    font-family: Roboto;
   }
 }
 
@@ -290,6 +300,10 @@ nav {
   .logoTop {
     margin-left: 87% !important;
     margin-top: 1%;
+  }
+
+  .reloadPg:hover {
+    color: darken($orange-button, 10%) !important;
   }
 }
 
