@@ -4,6 +4,7 @@ import Loginpage from "./components/Loginpage";
 import { Switch, Route, Router } from "react-router-dom";
 import history from "./history";
 import Selectmail from "./components/Selectmail";
+import Allmails from "./components/Allmails";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/selectmail">
           <Selectmail />
+        </Route>
+        <Route exact path="/Allmails">
+          <Allmails />
         </Route>
       </Switch>
     </>

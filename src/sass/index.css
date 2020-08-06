@@ -204,6 +204,16 @@ nav {
 a:hover {
   color: #a63c00 !important; }
 
+.srmv:focus {
+  border: 1px solid #d94f00 !important; }
+
+.innerworks:focus {
+  border: 1px solid #d94f00 !important;
+  outline: 0 !important; }
+
+.homeRed {
+  color: #d94f00 !important; }
+
 body {
   margin: 0;
   font-family: "Roboto" !important;

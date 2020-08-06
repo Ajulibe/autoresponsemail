@@ -7,7 +7,7 @@ import approval from "./approval.png";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function Selectmail() {
+function Selectmail(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
@@ -35,6 +35,10 @@ function Selectmail() {
     console.log(username);
     alert("Invitation Mail Sent");
     window.location.reload();
+  };
+
+  const mailCall = () => {
+    props.history.push("/allMails");
   };
 
   return (
@@ -85,11 +89,15 @@ function Selectmail() {
           </Link>
           <div className="buttons">
             <ul className="navigation">
-              <li className="homesf">
-                <a href="#">Home</a>
+              <li className="homesf ">
+                <a href="#" className="homeRed" id="homeIcon">
+                  Home
+                </a>
               </li>
               <li>
-                <a href="#">All Mails</a>
+                <a href="#" onClick={mailCall} id="mailcolor ">
+                  All Mails
+                </a>
               </li>
             </ul>
             <input type="search" className="srmv" />
@@ -134,7 +142,7 @@ function Selectmail() {
                 @
               </div>
               <input
-                className="form-control"
+                className="form-control innerworks"
                 name="username"
                 type="text"
                 value={username}
@@ -157,7 +165,7 @@ function Selectmail() {
                 <i className="fa fa-envelope-o"></i>
               </div>
               <input
-                className="form-control"
+                className="form-control innerworks"
                 id="email"
                 name="email"
                 type="text"
@@ -617,7 +625,7 @@ function Selectmail() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalCenterTitle2">
-                    Modal title
+                    EMAIL PREVIEW
                   </h5>
                   <button
                     type="button"
@@ -724,7 +732,7 @@ function Selectmail() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalCenterTitle3">
-                    Modal title
+                    EMAIL PREVIEW
                   </h5>
                   <button
                     type="button"
@@ -819,6 +827,7 @@ function Selectmail() {
             borderRadius: "2px",
             opacity: "0.7",
             color: "black",
+            textAlign: "center",
           }}
         >
           This Email Service Platform allows you to personalize already written

@@ -314,3 +314,20 @@ nav {
 a:hover {
   color: darken($orange-button, 10%) !important;
 }
+
+.srmv:focus {
+  border: 1px solid $orange-button !important;
+}
+
+.innerworks:focus {
+  border: 1px solid $orange-button !important;
+  outline: 0 !important;
+}
+
+.homeRed {
+  color: $orange-button !important;
+}
+
+// .homewhite {
+//   color: white !important;
+// }
