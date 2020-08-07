@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import headers from "./headers.png";
 import footers from "./footers.png";
@@ -6,10 +6,61 @@ import foot from "./foot.png";
 import approval from "./approval.png";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useIdleTimer } from "react-idle-timer";
+import axios from "axios";
 
 function Selectmail(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [isTimedOut, setIsTimeOut] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("/");
+    }
+  });
+
+  //IDLE TIMER
+  const handleOnIdle = (event) => {
+    if (isTimedOut) {
+      localStorage.clear();
+      props.history.push("/");
+    } else {
+      setIsTimeOut(true);
+
+      if (window.confirm("Would you want to be logged Out?")) {
+        localStorage.clear();
+        props.history.push("/");
+      } else {
+        //remember to pull out this function from the
+        //useIdleTimer object below
+        if (getElapsedTime() >= 180000) {
+          localStorage.clear();
+          props.history.push("/");
+        }
+        reset();
+      }
+    }
+  };
+
+  const handleOnActive = (event) => {};
+
+  const handleOnAction = (e) => {
+    console.log("user did something", e);
+  };
+
+  const {
+    getRemainingTime,
+    getLastActiveTime,
+    reset,
+    getElapsedTime,
+  } = useIdleTimer({
+    timeout: 1000 * 60 * 2,
+    onIdle: handleOnIdle,
+    onActive: handleOnActive,
+    onAction: handleOnAction,
+    debounce: 500,
+  });
 
   const usernamehandleChange = (event) => {
     setUsername(event.target.value);
@@ -20,21 +71,102 @@ function Selectmail(props) {
   };
 
   const sendApprovalMail = () => {
-    console.log(username);
-    alert("Approval Mail Sent");
-    window.location.reload();
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "https://auto-response-mail-backend.herokuapp.com/approval",
+        {
+          receiverName: username,
+          receiverEmail: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        if (response.data.message === "success") {
+          alert("Approval Mail Sent");
+          window.location.reload();
+        } else {
+          alert("Mail not sent");
+        }
+      })
+
+      .catch((error) => {
+        console.log("We are getting this error:");
+        console.log(error.response);
+      });
   };
 
   const sendAutoresponseMail = () => {
     console.log(username);
-    alert("Auto Response Mail Sent");
-    window.location.reload();
+    console.log(email);
+
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "https://auto-response-mail-backend.herokuapp.com/launchSoon",
+        {
+          receiverName: username,
+          receiverEmail: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        if (response.data.message === "success") {
+          alert("Auto Response Mail Sent");
+          window.location.reload();
+        } else {
+          alert("Mail not sent");
+        }
+      })
+
+      .catch((error) => {
+        console.log("We are getting this error:");
+        console.log(error.response);
+      });
   };
 
   const sendInvitationMail = () => {
-    console.log(username);
-    alert("Invitation Mail Sent");
-    window.location.reload();
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "https://auto-response-mail-backend.herokuapp.com/invitation",
+        {
+          receiverName: username,
+          receiverEmail: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        if (response.data.message === "success") {
+          alert("Invitation Mail Sent");
+          window.location.reload();
+        } else {
+          alert("Mail not sent");
+        }
+      })
+
+      .catch((error) => {
+        console.log("We are getting this error:");
+        console.log(error.response);
+      });
   };
 
   const mailCall = () => {
@@ -45,57 +177,59 @@ function Selectmail(props) {
     <div className="container-fluid selectmail" style={{ height: "100vh" }}>
       <div className="row no-gutters" style={{}}>
         <nav className="clearfix">
-          <Link
+          {" "}
+          <div
+            style={{
+              float: "left",
+              marginLeft: "1rem",
+              marginTop: "1rem",
+            }}
+            className="buttons2"
             onClick={() => {
               window.location.reload();
             }}
           >
-            {" "}
-            <div
+            <i
+              className="fa fa-envelope-o"
+              id="mailLogo"
               style={{
+                color: "white",
+                backgroundColor: "#2f2f2f",
                 float: "left",
-                marginLeft: "1rem",
-                marginTop: "1rem",
+                marginRight: "1rem",
+                marginTop: "0.3rem",
               }}
-              className="buttons2"
-            >
-              <i
-                className="fa fa-envelope-o"
-                id="mailLogo"
-                style={{
-                  color: "white",
-                  backgroundColor: "#2f2f2f",
-                  float: "left",
-                  marginRight: "1rem",
-                  marginTop: "0.3rem",
-                }}
-              ></i>
+            ></i>
 
-              <div
-                className="GtDiv reloadPg"
-                style={{
-                  boxSizing: "border-box",
-                  float: "left",
-                  height: "1rem",
-                  color: "white",
-                  fontSize: "1rem",
-                  textAlign: "left",
-                }}
-              >
-                GTBank API Connect <br />
-                Email Service Platform
-              </div>
+            <div
+              className="GtDiv reloadPg"
+              style={{
+                boxSizing: "border-box",
+                float: "left",
+                height: "1rem",
+                color: "white",
+                fontSize: "1rem",
+                textAlign: "left",
+              }}
+            >
+              GTBank API Connect <br />
+              Email Service Platform
             </div>
-          </Link>
+          </div>
           <div className="buttons">
             <ul className="navigation">
               <li className="homesf ">
-                <a href="#" className="homeRed" id="homeIcon">
+                <a href="#" style={{ color: "#C44901" }} id="home">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" onClick={mailCall} id="mailcolor ">
+                <a
+                  href="#"
+                  onClick={mailCall}
+                  style={{ color: "white" }}
+                  id="mail"
+                >
                   All Mails
                 </a>
               </li>
@@ -180,315 +314,6 @@ function Selectmail(props) {
               />
             </div>
           </div>
-          {/* <div
-            className="row d-flex justify-content-between align-items-md-center"
-            style={{ padding: "0px" }}
-          >
-            <div className="col-md-4" style={{ padding: "0px" }}>
-              <div className="row d-flex justify-content-md-left" style={{}}>
-                <div className="col-12 small-button">
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter"
-                    className="btn btn-primary btn-sm orange buttonwidth"
-                    style={{
-                      textAlign: "center",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    Auto Response
-                  </button> */}
-
-          {/* <div
-                    className="modal fade"
-                    id="exampleModalCenter"
-                    role="dialog"
-                    aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true"
-                  >
-                    <div
-                      className="modal-dialog modal-dialog-centered"
-                      role="document"
-                    >
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5
-                            className="modal-title"
-                            id="exampleModalCenterTitle"
-                          >
-                            EMAIL PREVIEW
-                          </h5>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div className="modal-body">
-                          <div
-                            className="row d-flex justify-content-md-center previewDiv"
-                            style={{}}
-                          >
-                            <div className="col-12 col-md-8">
-                              <img
-                                src={headers}
-                                style={{ maxWidth: "100%" }}
-                                className="previewImg"
-                              ></img>
-                            </div>
-                            <div
-                              className="col-12 col-md-8"
-                              style={{
-                                fontSize: "1rem",
-                                textAlign: "left",
-                              }}
-                            >
-                              <p>Hello {username} </p>
-                              Thank you for you interest in GTBank APIs. We are
-                              currently working on some finishing touches before
-                              our final launch of the developer portal. This
-                              would be done as soon as possible. Kindly exercise
-                              patience as we put things in place.
-                              <br />
-                              <br />
-                              We will inform you when the developer portal is
-                              finally up for use.
-                              <br />
-                              <br />
-                              Thank you
-                            </div>
-                            <br />
-                            <div className="col-12 col-md-8 mt-2">
-                              <img
-                                src={footers}
-                                style={{ maxWidth: "100%" }}
-                                className="previewImg"
-                              ></img>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn  white"
-                            data-dismiss="modal"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="button"
-                            className="btn  orange"
-                            onClick={sendAutoresponseMail}
-                          >
-                            Send
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-          {/* </div>{" "}
-              </div>
-            </div>
-            <br />
-            <br /> */}
-          {/* <div
-              className="col-md-4 deletePad"
-              style={{
-                paddingRight: "0.5rem",
-              }}
-            >
-               <div className="row d-flex justify-content-md-center">
-                <div className="col-12  small-button">
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter2"
-                    className="btn btn-primary btn-sm orange buttonwidth"
-                    style={{
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    Invitation
-                  </button>
-                  
-                  <div
-                    className="modal fade"
-                    id="exampleModalCenter2"
-                   
-                    role="dialog"
-                    aria-labelledby="exampleModalCenterTitle2"
-                    aria-hidden="true"
-                  >
-                    <div
-                      className="modal-dialog modal-dialog-centered"
-                      role="document"
-                    >
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5
-                            className="modal-title"
-                            id="exampleModalCenterTitle2"
-                          >
-                            Modal title
-                          </h5>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div className="modal-body">
-                          {" "}
-                          <div className="modal-body">
-                            <div
-                              className="row d-flex justify-content-md-center previewDiv"
-                              style={{}}
-                            >
-                              <div className="col-12 col-md-8">
-                                <img
-                                  src={headers}
-                                  style={{ maxWidth: "100%" }}
-                                  className="previewImg"
-                                ></img>
-                              </div>
-                              <div
-                                className="col-12 col-md-8"
-                                style={{
-                                  fontSize: "1rem",
-                                  textAlign: "left",
-                                }}
-                                
-                              >
-                                <p>Dear {username} </p>
-                                <span>
-                                  GTBank API developer portal is built to allow
-                                  third party developers integrate with our APIs
-                                  easily.
-                                </span>
-                                <br />
-                                <br />
-                                Take advantage of our API offerings grouped into
-                                Payments,Accounts,Identity and build best in
-                                class products and solutions that speak to your
-                                customers' needs.
-                                <br />
-                                <br />
-                                We are hereby specially inviting you and your
-                                team to join the pilot test of the sandbox
-                                before we launch. Kindly share the email address
-                                of the person/persons to test the APIs so we can
-                                approve after an account has been created.
-                              </div>
-                              <br />
-                              <div className="col-12 col-md-8 mt-2">
-                                <img
-                                  src={foot}
-                                  style={{ maxWidth: "100%" }}
-                                  className="previewImg"
-                                ></img>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn  white"
-                            data-dismiss="modal"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="button"
-                            className="btn  orange"
-                            onClick={sendInvitationMail}
-                          >
-                            Send
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> 
-            </div>*/}
-          {/* <br />
-            <br /> */}
-          {/* <div className="col-md-4" style={{ padding: "0px" }}>
-              <div className="row d-flex justify-content-md-right">
-                <div className="col-12  small-button">
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter3"
-                    className="btn btn-primary btn-sm orange buttonwidth"
-                    style={{
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    Approval
-                  </button>
-                  <div
-                    className="modal fade"
-                    id="exampleModalCenter3"
-                  
-                    role="dialog"
-                    aria-labelledby="exampleModalCenterTitle3"
-                    aria-hidden="true"
-                  >
-                    <div
-                      className="modal-dialog modal-dialog-centered"
-                      role="document"
-                    >
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5
-                            className="modal-title"
-                            id="exampleModalCenterTitle3"
-                          >
-                            Modal title
-                          </h5>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div className="modal-body">...</div>
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn  white"
-                            data-dismiss="modal"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="button"
-                            className="btn  orange"
-                            onClick={sendApprovalMail}
-                          >
-                            Send
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-          {/* // </div> */}
         </form>
       </div>
       {/* newstuffffffffffff */}
@@ -591,6 +416,7 @@ function Selectmail(props) {
                   <button
                     type="button"
                     className="btn btn-sm  orange"
+                    data-dismiss="modal"
                     onClick={sendAutoresponseMail}
                   >
                     Send
@@ -698,6 +524,7 @@ function Selectmail(props) {
                   <button
                     type="button"
                     className="btn btn-sm  orange"
+                    data-dismiss="modal"
                     onClick={sendInvitationMail}
                   >
                     Send
@@ -806,7 +633,8 @@ function Selectmail(props) {
                   <button
                     type="button"
                     className="btn btn-sm orange"
-                    onClick={sendInvitationMail}
+                    data-dismiss="modal"
+                    onClick={sendApprovalMail}
                   >
                     Send
                   </button>

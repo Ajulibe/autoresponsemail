@@ -7,13 +7,10 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Signup from "./Signup";
 
 import App from "../App";
 import { withRouter } from "react-router-dom";
 import logo from "./logo.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 export class Loginpage extends Component {
   constructor(props) {
@@ -22,6 +19,7 @@ export class Loginpage extends Component {
       Username: "",
       password: "",
       confirmPassword: "",
+      token: "",
       authenticated: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -52,6 +50,10 @@ export class Loginpage extends Component {
   //     });
   // };
 
+  componentDidMount() {
+    localStorage.clear();
+  }
+
   handleChange(event) {
     event.stopPropagation();
     let name = event.target.name;
@@ -66,6 +68,7 @@ export class Loginpage extends Component {
   toogleDisplay = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    this.setState({ Username: "", password: "" });
     const login = document.getElementById("myform");
     const register = document.getElementById("myform2");
     login.classList.toggle("hideme");
@@ -75,14 +78,66 @@ export class Loginpage extends Component {
   loginRoute = (event) => {
     event.preventDefault();
     console.log("You are submitting " + this.state.Username);
-    this.props.history.push("/selectmail");
+    const { Username, password } = this.state;
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "https://auto-response-mail-backend.herokuapp.com/signin",
+        {
+          username: Username,
+          password: password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        const token = response.data.token;
+
+        if (response.data.message === "success") {
+          localStorage.setItem("token", token);
+          this.setState({ authenticated: true });
+          this.props.history.push("/selectmail");
+        }
+      })
+
+      .catch((error) => {
+        console.log("We are getting this error:");
+        console.log(error);
+      });
   };
 
   registerRoute(event) {
-    alert("You are submitting " + this.state.Username);
-    this.state.password === this.state.confirmPassword
-      ? this.props.history.push("/selectmail")
-      : alert("Password and Confirm Password are not Identical");
+    event.preventDefault();
+    console.log("You are submitting " + this.state.Username);
+    const { Username, password } = this.state;
+    if (this.state.password !== this.state.confirmPassword) {
+      alert("Password and Confirm Password are not Identical");
+    }
+    axios
+      .post("https://auto-response-mail-backend.herokuapp.com/signup", {
+        username: Username,
+        password: password,
+      })
+      .then((response) => {
+        // console.log(response.data);
+        const token = response.data.token;
+        // this.setState({token:token})
+        if (response.data.message === "success") {
+          localStorage.setItem("token", token);
+          // this.props.history.push("/selectmail");
+        }
+      })
+
+      .catch((error) => {
+        console.log("error");
+        // console.log(error.response);
+      });
   }
 
   render() {
@@ -90,7 +145,7 @@ export class Loginpage extends Component {
       <div className="background">
         <div className="container">
           <div className="row d-flex justify-content-center ">
-            <div className="col-10 col-md-4">
+            <div className="col-10 col-sm-6 col-md-5">
               {/* login */}
               <form
                 id="myform"
@@ -114,7 +169,7 @@ export class Loginpage extends Component {
                 >
                   <div
                     style={{
-                      color: "#707070",
+                      color: "#2f2f2f",
                       fontFamily: "Poppins",
                     }}
                     className="robot"
@@ -138,7 +193,7 @@ export class Loginpage extends Component {
                 <br />
                 <br />
                 <div
-                  className="form-group"
+                  className="form-group transmove"
                   // style={{ border: "1px solid rgb(217,78,0) !important" }}
                 >
                   <div className="input-group">
@@ -282,10 +337,10 @@ export class Loginpage extends Component {
                 >
                   <div
                     style={{
-                      color: "#707070",
+                      color: "#2f2f2f",
                       fontFamily: "Poppins",
                     }}
-                    className="robot"
+                    className="robot titleSize"
                   >
                     <p>GTBank API Connect</p>
                     <p>Email Service Platform</p>
@@ -306,7 +361,7 @@ export class Loginpage extends Component {
                 <br />
                 <br />
                 <div
-                  className="form-group"
+                  className="form-group transmove"
                   // style={{ border: "1px solid rgb(217,78,0) !important" }}
                 >
                   <div className="input-group">

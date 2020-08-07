@@ -116,3 +116,21 @@ html {
   display: none;
   transition: all 0.2s;
 }
+
+.transmove {
+  animation-name: reappear;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes reappear {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

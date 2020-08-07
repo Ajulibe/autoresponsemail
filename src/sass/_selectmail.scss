@@ -117,6 +117,15 @@ $darkenamount: 10%;
     font-weight: 600;
     font-family: Roboto;
   }
+  .loginbut {
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    font-family: Roboto;
+  }
+
+  .titleSize {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -158,10 +167,20 @@ $darkenamount: 10%;
   .previewDiv {
     margin: auto;
   }
+
   .orange {
     font-size: 0.5rem !important;
     font-weight: 300;
     font-family: Roboto;
+  }
+  .loginbut {
+    font-size: 0.5rem !important;
+    font-weight: 300;
+    font-family: Roboto;
+  }
+
+  .titleSize {
+    font-size: 0.8rem !important;
   }
 }
 
@@ -328,6 +347,12 @@ a:hover {
   color: $orange-button !important;
 }
 
-// .homewhite {
-//   color: white !important;
-// }
+@media screen and (max-width: 768px) {
+  // .loginbut {
+  //   font-size: 0.4rem;
+  // }
+
+  .titleSize {
+    font-size: 0.7rem;
+  }
+}

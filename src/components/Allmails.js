@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import headers from "./headers.png";
 import footers from "./footers.png";
@@ -7,10 +7,61 @@ import approval from "./approval.png";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MDBAnimation } from "mdbreact";
+import { useIdleTimer } from "react-idle-timer";
 import axios from "axios";
 
 function Allmails(props) {
   const [returnedMail, setReturnedMail] = useState("");
+  const [isTimedOut, setIsTimeOut] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("/");
+    }
+    getTask();
+  }, []);
+
+  //IDLE TIMER
+  const handleOnIdle = (event) => {
+    if (isTimedOut) {
+      localStorage.clear();
+      props.history.push("/");
+    } else {
+      setIsTimeOut(true);
+
+      if (window.confirm("Would you want to be logged Out?")) {
+        localStorage.clear();
+        props.history.push("/");
+      } else {
+        //remember to pull out this function from the
+        //useIdleTimer object below
+        if (getElapsedTime() >= 180000) {
+          localStorage.clear();
+          props.history.push("/");
+        }
+        reset();
+      }
+    }
+  };
+
+  const handleOnActive = (event) => {};
+
+  const handleOnAction = (e) => {
+    console.log("user did something", e);
+  };
+
+  const {
+    getRemainingTime,
+    getLastActiveTime,
+    reset,
+    getElapsedTime,
+  } = useIdleTimer({
+    timeout: 1000 * 60 * 2,
+    onIdle: handleOnIdle,
+    onActive: handleOnActive,
+    onAction: handleOnAction,
+    debounce: 500,
+  });
 
   const homeCall = (e) => {
     e.preventDefault();
@@ -19,20 +70,26 @@ function Allmails(props) {
 
   //get all mails
   const getTask = async () => {
-    // get request
-    const response = await axios.get("");
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      "https://auto-response-mail-backend.herokuapp.com/mails",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-    // console.log(response.data);
-    const mailDiv = response.data.map((task) => {
+    console.log(response.data.mail);
+    const mailDiv = response.data.mail.map((mail) => {
       return (
         <tbody style={{ marginTop: "5%" }}>
-          <tr style={{ marginTop: "8%" }}>
+          <tr style={{}}>
             {" "}
             <td
               className="justify-content-center"
               style={{
-                height: "110%",
-                backgroundColor: "#263145",
+                backgroundColor: "white",
               }}
             >
               <MDBAnimation type="fadeIn">
@@ -42,29 +99,16 @@ function Allmails(props) {
                   style={{
                     textAlign: "center",
                     marginLeft: "0%",
-                    color: "white",
                   }}
                 >
-                  <button
-                    className="btn"
-                    style={{
-                      textAlign: "center",
-                      marginLeft: "0%",
-                      color: "white",
-                      border: "1px solid grey",
-                    }}
-                  >
-                    {/* <b className="fontStuff4">{task.title}</b> */}
-                  </button>
+                  {mail.sender}
                 </p>
               </MDBAnimation>
             </td>
-            {/* //staff in charge */}
             <td
               className="justify-content-center"
               style={{
-                height: "110%",
-                backgroundColor: "#263145",
+                backgroundColor: "white",
               }}
             >
               <MDBAnimation type="fadeIn">
@@ -73,18 +117,15 @@ function Allmails(props) {
                   style={{
                     textAlign: "center",
                     marginLeft: "0%",
-                    color: "white",
                   }}
                 >
-                  {/* <b className="fontStuff4">{task.staff}</b> */}
+                  {mail.mailType}
                 </p>
               </MDBAnimation>
             </td>
-            {/* //delivery date in charge */}
             <td
               style={{
-                height: "110%",
-                backgroundColor: "#263145",
+                backgroundColor: "white",
               }}
             >
               <MDBAnimation type="fadeIn">
@@ -93,10 +134,9 @@ function Allmails(props) {
                   style={{
                     textAlign: "center",
                     marginLeft: "0%",
-                    color: "white",
                   }}
                 >
-                  {/* <b className="fontStuff4">{task.selecteddate}</b> */}
+                  {mail.date}
                 </p>
               </MDBAnimation>
             </td>
@@ -115,7 +155,10 @@ function Allmails(props) {
   };
 
   return (
-    <div className="container-fluid selectmail" style={{ height: "100vh" }}>
+    <div
+      className="container-fluid"
+      style={{ height: "100vh", backgroundColor: "#D94F00" }}
+    >
       <div className="row no-gutters" style={{}}>
         <nav className="clearfix">
           <Link
@@ -165,15 +208,15 @@ function Allmails(props) {
               <li className="homesf ">
                 <a
                   href="#"
-                  className="homeRed"
                   id="homeIcon"
                   onClick={homeCall}
+                  style={{ color: "white" }}
                 >
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" id="mailcolor ">
+                <a href="#" id="mailcolor " style={{ color: "#C44901" }}>
                   All Mails
                 </a>
               </li>
@@ -187,16 +230,15 @@ function Allmails(props) {
 
       <div className="row d-flex justify-content-center mt-5" style={{}}>
         <div
-          className="col-11 col-md-10 "
+          className="col-11 col-md-10 table-responsive-md"
           style={{
             fontSize: "1rem",
             borderRadius: "2px",
             color: "black",
             textAlign: "center",
-            border: "0",
           }}
         >
-          <table class="table table-borderless table-responsive-md mt-3">
+          <table class="table table-borderless mx-auto mt-3">
             <thead>
               <tr>
                 <td>
@@ -238,13 +280,6 @@ function Allmails(props) {
               </tr>
             </thead>
             {returnedMail}
-            <tbody>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-            </tbody>
           </table>
         </div>
       </div>
