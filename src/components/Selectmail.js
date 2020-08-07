@@ -173,6 +173,10 @@ function Selectmail(props) {
     props.history.push("/allMails");
   };
 
+  const logmeOut = () => {
+    props.history.push("/");
+  };
+
   return (
     <div className="container-fluid selectmail" style={{ height: "100vh" }}>
       <div className="row no-gutters" style={{}}>
@@ -218,11 +222,6 @@ function Selectmail(props) {
           </div>
           <div className="buttons">
             <ul className="navigation">
-              <li className="homesf ">
-                <a href="#" style={{ color: "#C44901" }} id="home">
-                  Home
-                </a>
-              </li>
               <li>
                 <a
                   href="#"
@@ -233,8 +232,24 @@ function Selectmail(props) {
                   All Mails
                 </a>
               </li>
+
+              <li className="homesf " onClick={logmeOut}>
+                <a
+                  href="#"
+                  style={{
+                    color: "white",
+                    border: "1px solid #C14C08",
+                    padding: "0.4rem",
+                    borderRadius: "0.3rem",
+                  }}
+                  id="home"
+                  className="positionWl"
+                >
+                  LOGOUT
+                </a>
+              </li>
             </ul>
-            <input type="search" className="srmv" />
+            {/* <input type="search" className="srmv" /> */}
           </div>
         </nav>
       </div>

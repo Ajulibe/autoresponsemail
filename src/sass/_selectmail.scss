@@ -145,6 +145,11 @@ $darkenamount: 10%;
   .navigation {
     margin-left: -3rem;
   }
+
+  .positionWl {
+    // margin-top: 300px;
+    display: none;
+  }
 }
 
 @media screen and (max-width: 375px) {

@@ -95,7 +95,9 @@
     height: 2rem;
     left: 10px; }
   .navigation {
-    margin-left: -3rem; } }
+    margin-left: -3rem; }
+  .positionWl {
+    display: none; } }
 
 @media screen and (max-width: 375px) {
   .previewImg {
