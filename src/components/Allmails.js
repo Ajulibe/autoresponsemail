@@ -21,47 +21,45 @@ function Allmails(props) {
     getTask();
   }, []);
 
-  //IDLE TIMER
-  // const handleOnIdle = (event) => {
-  //   if (isTimedOut) {
-  //     localStorage.clear();
-  //     props.history.push("/");
-  //   } else {
-  //     setIsTimeOut(true);
+  // IDLE TIMER
+  const handleOnIdle = (event) => {
+    if (isTimedOut) {
+      localStorage.clear();
+      props.history.push("/");
+    } else {
+      setIsTimeOut(true);
 
-  //     if (window.confirm("Would you want to be logged Out?")) {
-  //       localStorage.clear();
-  //       props.history.push("/");
-  //     } else {
-  //       //remember to pull out this function from the
-  //       //useIdleTimer object below
-  //       if (getElapsedTime() >= 180000) {
-  //         localStorage.clear();
-  //         props.history.push("/");
-  //       }
-  //       reset();
-  //     }
-  //   }
-  // };
+      if (window.confirm("Would you want to be logged Out?")) {
+        localStorage.clear();
+        props.history.push("/");
+      } else {
+        //remember to pull out this function from the
+        //useIdleTimer object below
+        if (getElapsedTime() >= 180000) {
+          localStorage.clear();
+          props.history.push("/");
+        }
+        reset();
+      }
+    }
+  };
 
-  // const handleOnActive = (event) => {};
+  const handleOnActive = (event) => {};
 
-  // const handleOnAction = (e) => {
-  //   console.log("user did something", e);
-  // };
+  const handleOnAction = (e) => {};
 
-  // const {
-  //   getRemainingTime,
-  //   getLastActiveTime,
-  //   reset,
-  //   getElapsedTime,
-  // } = useIdleTimer({
-  //   timeout: 1000 * 60 * 2,
-  //   onIdle: handleOnIdle,
-  //   onActive: handleOnActive,
-  //   onAction: handleOnAction,
-  //   debounce: 500,
-  // });
+  const {
+    getRemainingTime,
+    getLastActiveTime,
+    reset,
+    getElapsedTime,
+  } = useIdleTimer({
+    timeout: 1000 * 60 * 2,
+    onIdle: handleOnIdle,
+    onActive: handleOnActive,
+    onAction: handleOnAction,
+    debounce: 500,
+  });
 
   const homeCall = (e) => {
     e.preventDefault();
@@ -156,13 +154,13 @@ function Allmails(props) {
 
   return (
     <div
-      className="container-fluid gradient"
+      className="container-fluid selectmail"
       style={{
         backgroundSize: "cover",
       }}
     >
       <div className="row no-gutters" style={{}}>
-        <nav className="clearfix">
+        <nav className="clearfix" style={{ position: "fixed", zIndex: "1" }}>
           <Link to="/selectmail">
             {" "}
             <div
@@ -214,12 +212,23 @@ function Allmails(props) {
                 </a>
               </li>
               <li>
-                <a href="#" id="mailcolor " style={{ color: "#C44901" }}>
+                <a
+                  href="#"
+                  id="mailcolor "
+                  style={{ color: "#C44901", marginRight: "2rem" }}
+                >
                   All Mails
                 </a>
               </li>
+              <Link to="/">
+                <li>
+                  <a href="#" style={{ color: "white" }}>
+                    Logout
+                  </a>
+                </li>
+              </Link>
             </ul>
-            <input type="search" className="srmv" />
+            {/* <input type="search" className="srmv" /> */}
           </div>
         </nav>
       </div>
