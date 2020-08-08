@@ -46,7 +46,7 @@ function Selectmail(props) {
   const handleOnActive = (event) => {};
 
   const handleOnAction = (e) => {
-    console.log("user did something", e);
+    // console.log("user did something", e);
   };
 
   const {
@@ -86,8 +86,6 @@ function Selectmail(props) {
         }
       )
       .then((response) => {
-        console.log(response.data);
-
         if (response.data.message === "success") {
           alert("Approval Mail Sent");
           window.location.reload();
@@ -97,15 +95,11 @@ function Selectmail(props) {
       })
 
       .catch((error) => {
-        console.log("We are getting this error:");
-        console.log(error.response);
+        console.log("An Error Occurred");
       });
   };
 
   const sendAutoresponseMail = () => {
-    console.log(username);
-    console.log(email);
-
     const token = localStorage.getItem("token");
     axios
       .post(
@@ -121,8 +115,6 @@ function Selectmail(props) {
         }
       )
       .then((response) => {
-        console.log(response.data);
-
         if (response.data.message === "success") {
           alert("Auto Response Mail Sent");
           window.location.reload();
@@ -132,8 +124,7 @@ function Selectmail(props) {
       })
 
       .catch((error) => {
-        console.log("We are getting this error:");
-        console.log(error.response);
+        console.log("An Error Occurred");
       });
   };
 
@@ -153,8 +144,6 @@ function Selectmail(props) {
         }
       )
       .then((response) => {
-        console.log(response.data);
-
         if (response.data.message === "success") {
           alert("Invitation Mail Sent");
           window.location.reload();
@@ -164,8 +153,7 @@ function Selectmail(props) {
       })
 
       .catch((error) => {
-        console.log("We are getting this error:");
-        console.log(error.response);
+        console.log("An error Occurred");
       });
   };
 

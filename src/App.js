@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Loginpage from "./components/Loginpage";
 import { Switch, Route, Router } from "react-router-dom";

@@ -245,6 +245,7 @@ export class Loginpage extends Component {
                         borderLeft: "0",
                         borderRadius: "0",
                         backgroundColor: "#eeeeee",
+                        borderTop: "0",
                       }}
                     />
                   </div>
@@ -272,23 +273,12 @@ export class Loginpage extends Component {
                         fontSize: "1rem",
                         borderTopRightRadius: "0",
                         backgroundColor: "#eeeeee",
+                        borderTop: "0",
                       }}
                     />
                   </div>
                 </div>
                 <br />
-                <div class="form-group d-flex justify-content-start pr-0">
-                  <div class="form-check shift ">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label" for="exampleCheck1">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
 
                 <Form.Group style={{ paddingTop: "5px" }}>
                   <Button
@@ -413,19 +403,12 @@ export class Loginpage extends Component {
                         borderLeft: "0",
                         borderTopRightRadius: "0",
                         backgroundColor: "#eeeeee",
+                        borderTop: "0",
                       }}
                     />
                   </div>
                 </div>
                 <br />
-
-                <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check
-                    className="shift"
-                    type="checkbox"
-                    label="Check me out"
-                  />
-                </Form.Group>
 
                 <Form.Group style={{ paddingTop: "5px" }}>
                   <Button

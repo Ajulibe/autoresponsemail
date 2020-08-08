@@ -78,7 +78,7 @@ function Allmails(props) {
       }
     );
 
-    console.log(response.data.mail);
+    // console.log(response.data.mail);
     const mailDiv = response.data.mail.map((mail) => {
       return (
         <tbody style={{ marginTop: "5%" }}>
@@ -152,6 +152,10 @@ function Allmails(props) {
     setReturnedMail(mailDiv);
   };
 
+  const logmeOut = () => {
+    props.history.push("/");
+  };
+
   return (
     <div
       className="container-fluid selectmail"
@@ -211,22 +215,22 @@ function Allmails(props) {
                   Home
                 </a>
               </li>
-              <li>
+
+              <li className="homesf " onClick={logmeOut}>
                 <a
                   href="#"
-                  id="mailcolor "
-                  style={{ color: "#C44901", marginRight: "2rem" }}
+                  style={{
+                    color: "white",
+                    border: "1px solid #C14C08",
+                    padding: "0.4rem",
+                    borderRadius: "0.3rem",
+                  }}
+                  id="home"
+                  className="positionWl"
                 >
-                  All Mails
+                  LOGOUT
                 </a>
               </li>
-              <Link to="/">
-                <li>
-                  <a href="#" style={{ color: "white" }}>
-                    Logout
-                  </a>
-                </li>
-              </Link>
             </ul>
             {/* <input type="search" className="srmv" /> */}
           </div>
