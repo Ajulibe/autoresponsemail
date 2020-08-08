@@ -381,7 +381,7 @@ function Selectmail(props) {
                     >
                       <p>Hello {username}, </p>
                       <div style={{ textAlign: "justify" }}>
-                        Thank you for you interest in GTBank APIs. We are
+                        Thank you for your interest in GTBank APIs. We are
                         currently working on some finishing touches before our
                         final launch of the developer portal. This would be done
                         as soon as possible. Kindly exercise patience as we put
@@ -392,7 +392,7 @@ function Selectmail(props) {
                         up for use.
                         <br />
                         <br />
-                        Thank you
+                        Thank you.
                       </div>
                     </div>
                     <br />
