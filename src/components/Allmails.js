@@ -9,104 +9,110 @@ function Allmails(props) {
   const [returnedMail, setReturnedMail] = useState("");
   const [isTimedOut, setIsTimeOut] = useState(false);
 
-  useEffect((props) => {
-    if (!localStorage.getItem("token")) {
+  useEffect(() => {
+    if (!sessionStorage.getItem("token")) {
       props.history.push("/");
     }
 
-    //get all mails//always define the function inside use effect
-    const getTask = async () => {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        "https://auto-response-mail-backend.herokuapp.com/mails",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      // console.log(response.data.mail);
-      const mailDiv = response.data.mail.map((mail) => {
-        return (
-          <tr key={mail._id} style={{ marginTop: "5%" }}>
-            <td
-              className=""
-              style={{
-                backgroundColor: "white",
-              }}
-            >
-              <MDBAnimation type="fadeIn">
-                <p
-                  className="card-text"
-                  style={{
-                    textAlign: "left",
-                    marginLeft: "0%",
-                  }}
-                >
-                  To:{mail.receiverEmail}
-                </p>
-              </MDBAnimation>
-            </td>
-            <td
-              className="justify-content-center"
-              style={{
-                backgroundColor: "white",
-              }}
-            >
-              <MDBAnimation type="fadeIn">
-                <p
-                  style={{
-                    textAlign: "center",
-                    marginLeft: "0%",
-                  }}
-                >
-                  {mail.mailType}
-                </p>
-              </MDBAnimation>
-            </td>
-            <td
-              style={{
-                backgroundColor: "white",
-              }}
-            >
-              <MDBAnimation type="fadeIn">
-                <p
-                  style={{
-                    textAlign: "center",
-                    marginLeft: "0%",
-                  }}
-                >
-                  {mail.date}
-                </p>
-              </MDBAnimation>
-            </td>
-          </tr>
-        );
+    getTask()
+      .then(() => {
+        // console.log("good");
+      })
+      .catch((e) => {
+        // console.log("error");
       });
-
-      refreshUser(mailDiv);
-    };
-
-    getTask();
   }, []);
+
+  //get all mails//always define the function inside use effect
+  const getTask = async () => {
+    const token = sessionStorage.getItem("token");
+    const response = await axios.get(
+      "https://auto-response-mail-backend.herokuapp.com/mails",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // console.log(response.data.mail);
+    const mailDiv = response.data.mail.map((mail) => {
+      return (
+        <tr key={mail._id} style={{ marginTop: "5%" }}>
+          <td
+            className=""
+            style={{
+              backgroundColor: "white",
+            }}
+          >
+            <MDBAnimation type="fadeIn">
+              <p
+                className="card-text"
+                style={{
+                  textAlign: "left",
+                  marginLeft: "0%",
+                }}
+              >
+                To:{mail.receiverEmail}
+              </p>
+            </MDBAnimation>
+          </td>
+          <td
+            className="justify-content-center"
+            style={{
+              backgroundColor: "white",
+            }}
+          >
+            <MDBAnimation type="fadeIn">
+              <p
+                style={{
+                  textAlign: "center",
+                  marginLeft: "0%",
+                }}
+              >
+                {mail.mailType}
+              </p>
+            </MDBAnimation>
+          </td>
+          <td
+            style={{
+              backgroundColor: "white",
+            }}
+          >
+            <MDBAnimation type="fadeIn">
+              <p
+                style={{
+                  textAlign: "center",
+                  marginLeft: "0%",
+                }}
+              >
+                {mail.date}
+              </p>
+            </MDBAnimation>
+          </td>
+        </tr>
+      );
+    });
+
+    refreshUser(mailDiv);
+  };
 
   // IDLE TIMER
   const handleOnIdle = (event) => {
     if (isTimedOut) {
-      localStorage.clear();
+      sessionStorage.clear();
       props.history.push("/");
     } else {
       setIsTimeOut(true);
 
       if (window.confirm("Would you want to be logged Out?")) {
-        localStorage.clear();
+        sessionStorage.clear();
         props.history.push("/");
       } else {
         //remember to pull out this function from the
         //useIdleTimer object below
         if (getElapsedTime() >= 180000) {
-          localStorage.clear();
+          sessionStorage.clear();
           props.history.push("/");
         }
         reset();

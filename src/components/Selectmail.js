@@ -4,6 +4,8 @@ import headers from "./headers.png";
 import footers from "./footers.png";
 import foot from "./foot.png";
 import approval from "./approval.png";
+import working from "./working.png";
+import congrats from "./congrats.png";
 import { withRouter } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
 import axios from "axios";
@@ -14,7 +16,7 @@ function Selectmail(props) {
   const [isTimedOut, setIsTimeOut] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       props.history.push("/");
     }
   });
@@ -22,19 +24,19 @@ function Selectmail(props) {
   //IDLE TIMER
   const handleOnIdle = (event) => {
     if (isTimedOut) {
-      localStorage.clear();
+      sessionStorage.clear();
       props.history.push("/");
     } else {
       setIsTimeOut(true);
 
       if (window.confirm("Would you want to be logged Out?")) {
-        localStorage.clear();
+        sessionStorage.clear();
         props.history.push("/");
       } else {
         //remember to pull out this function from the
         //useIdleTimer object below
         if (getElapsedTime() >= 180000) {
-          localStorage.clear();
+          sessionStorage.clear();
           props.history.push("/");
         }
         reset();
@@ -65,7 +67,7 @@ function Selectmail(props) {
   };
 
   const sendApprovalMail = () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios
       .post(
         "https://auto-response-mail-backend.herokuapp.com/approval",
@@ -94,7 +96,7 @@ function Selectmail(props) {
   };
 
   const sendAutoresponseMail = () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios
       .post(
         "https://auto-response-mail-backend.herokuapp.com/launchSoon",
@@ -123,7 +125,7 @@ function Selectmail(props) {
   };
 
   const sendInvitationMail = () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios
       .post(
         "https://auto-response-mail-backend.herokuapp.com/invitation",
@@ -471,7 +473,7 @@ function Selectmail(props) {
                     >
                       <div className="col-12 col-md-8">
                         <img
-                          src={headers}
+                          src={working}
                           alt="headers"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
@@ -484,6 +486,8 @@ function Selectmail(props) {
                           textAlign: "left",
                         }}
                       >
+                        <br />
+                        <br />
                         <p>Dear {username} </p>
                         <div style={{ textAlign: "justify" }}>
                           GTBank API developer portal is built to allow third
@@ -581,7 +585,7 @@ function Selectmail(props) {
                     >
                       <div className="col-12 col-md-8">
                         <img
-                          src={headers}
+                          src={congrats}
                           alt="headers"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
@@ -594,6 +598,8 @@ function Selectmail(props) {
                           textAlign: "left",
                         }}
                       >
+                        <br />
+                        <br />
                         <p>Dear {username} </p>
                         <div style={{ textAlign: "justify" }}>
                           Your request to migrate from production plan to

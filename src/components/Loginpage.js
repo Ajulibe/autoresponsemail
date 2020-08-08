@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-
 import Form from "react-bootstrap/Form";
-
 import axios from "axios";
-
 import { withRouter } from "react-router-dom";
 import logo from "./logo.svg";
 
@@ -47,7 +44,7 @@ export class Loginpage extends Component {
   // };
 
   componentDidMount() {
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   handleChange(event) {
@@ -75,7 +72,7 @@ export class Loginpage extends Component {
     event.preventDefault();
 
     const { Username, password } = this.state;
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios
       .post(
         "https://auto-response-mail-backend.herokuapp.com/signin",
@@ -94,7 +91,7 @@ export class Loginpage extends Component {
         const token = response.data.token;
 
         if (response.data.message === "success") {
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
           this.setState({ authenticated: true });
           this.props.history.push("/selectmail");
         }
@@ -120,7 +117,7 @@ export class Loginpage extends Component {
         const token = response.data.token;
         // this.setState({token:token})
         if (response.data.message === "success") {
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
           // this.props.history.push("/selectmail");
         }
       })
@@ -135,7 +132,7 @@ export class Loginpage extends Component {
       <div className="background" style={{ position: "fixed" }}>
         <div className="container">
           <div className="row d-flex justify-content-center ">
-            <div className="col-10 col-sm-6 col-md-5">
+            <div className="col-10 col-sm-7 col-md-5">
               {/* login */}
               <form
                 id="myform"
