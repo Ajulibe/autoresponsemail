@@ -132,7 +132,7 @@ export class Loginpage extends Component {
 
   render() {
     return (
-      <div className="background">
+      <div className="background" style={{ position: "fixed" }}>
         <div className="container">
           <div className="row d-flex justify-content-center ">
             <div className="col-10 col-sm-6 col-md-5">
