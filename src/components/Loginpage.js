@@ -94,6 +94,8 @@ export class Loginpage extends Component {
           sessionStorage.setItem("token", token);
           this.setState({ authenticated: true });
           this.props.history.push("/selectmail");
+        } else {
+          alert("Invalid Username or Password");
         }
       })
 
@@ -117,8 +119,11 @@ export class Loginpage extends Component {
         const token = response.data.token;
         // this.setState({token:token})
         if (response.data.message === "success") {
+          alert("Successful");
           sessionStorage.setItem("token", token);
-          // this.props.history.push("/selectmail");
+          this.props.history.push("/selectmail");
+        } else {
+          alert("Invalid Email");
         }
       })
 

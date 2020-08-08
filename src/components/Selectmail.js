@@ -379,7 +379,7 @@ function Selectmail(props) {
                         textAlign: "left",
                       }}
                     >
-                      <p>Hello {username} </p>
+                      <p>Hello {username}, </p>
                       <div style={{ textAlign: "justify" }}>
                         Thank you for you interest in GTBank APIs. We are
                         currently working on some finishing touches before our
@@ -488,7 +488,7 @@ function Selectmail(props) {
                       >
                         <br />
                         <br />
-                        <p>Dear {username} </p>
+                        <p>Dear {username}, </p>
                         <div style={{ textAlign: "justify" }}>
                           GTBank API developer portal is built to allow third
                           party developers integrate with our APIs easily.
@@ -600,7 +600,7 @@ function Selectmail(props) {
                       >
                         <br />
                         <br />
-                        <p>Dear {username} </p>
+                        <p>Dear {username}, </p>
                         <div style={{ textAlign: "justify" }}>
                           Your request to migrate from production plan to
                           development plan has been carefully reviewed
