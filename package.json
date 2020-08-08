@@ -20,13 +20,15 @@
     "react-hook-form": "^6.2.0",
     "react-idle-timer": "^4.3.6",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "serve": "^11.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "dev": "react-scripts start",
     "compile:sass": "node-sass src/sass/main.scss src/sass/index.css -w"
   },
   "eslintConfig": {
