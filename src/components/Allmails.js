@@ -9,7 +9,7 @@ function Allmails(props) {
   const [returnedMail, setReturnedMail] = useState("");
   const [isTimedOut, setIsTimeOut] = useState(false);
 
-  useEffect(() => {
+  useEffect((props) => {
     if (!localStorage.getItem("token")) {
       props.history.push("/");
     }
@@ -30,7 +30,6 @@ function Allmails(props) {
       const mailDiv = response.data.mail.map((mail) => {
         return (
           <tr key={mail._id} style={{ marginTop: "5%" }}>
-            {" "}
             <td
               className=""
               style={{
@@ -38,7 +37,6 @@ function Allmails(props) {
               }}
             >
               <MDBAnimation type="fadeIn">
-                {" "}
                 <p
                   className="card-text"
                   style={{
@@ -46,7 +44,7 @@ function Allmails(props) {
                     marginLeft: "0%",
                   }}
                 >
-                  To: {mail.receiverEmail}
+                  To:{mail.receiverEmail}
                 </p>
               </MDBAnimation>
             </td>
@@ -57,7 +55,6 @@ function Allmails(props) {
               }}
             >
               <MDBAnimation type="fadeIn">
-                {" "}
                 <p
                   style={{
                     textAlign: "center",
@@ -74,7 +71,6 @@ function Allmails(props) {
               }}
             >
               <MDBAnimation type="fadeIn">
-                {" "}
                 <p
                   style={{
                     textAlign: "center",
@@ -122,12 +118,7 @@ function Allmails(props) {
 
   const handleOnAction = (e) => {};
 
-  const {
-    getRemainingTime,
-    getLastActiveTime,
-    reset,
-    getElapsedTime,
-  } = useIdleTimer({
+  const { reset, getElapsedTime } = useIdleTimer({
     timeout: 1000 * 60 * 2,
     onIdle: handleOnIdle,
     onActive: handleOnActive,

@@ -48,12 +48,7 @@ function Selectmail(props) {
     // console.log("user did something", e);
   };
 
-  const {
-    getRemainingTime,
-    getLastActiveTime,
-    reset,
-    getElapsedTime,
-  } = useIdleTimer({
+  const { reset, getElapsedTime } = useIdleTimer({
     timeout: 1000 * 60 * 2,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
@@ -248,6 +243,7 @@ function Selectmail(props) {
           {" "}
           <img
             src={logo}
+            alt="gtlogo"
             className="gtlogs"
             style={{
               width: "5rem",
@@ -369,6 +365,7 @@ function Selectmail(props) {
                     <div className="col-12 col-md-8">
                       <img
                         src={headers}
+                        alt="headers"
                         style={{ maxWidth: "100%" }}
                         className="previewImg"
                       ></img>
@@ -400,6 +397,7 @@ function Selectmail(props) {
                     <div className="col-12 col-md-8 mt-2">
                       <img
                         src={footers}
+                        alt="footers"
                         style={{ maxWidth: "100%" }}
                         className="previewImg"
                       ></img>
@@ -474,6 +472,7 @@ function Selectmail(props) {
                       <div className="col-12 col-md-8">
                         <img
                           src={headers}
+                          alt="headers"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>
@@ -508,6 +507,7 @@ function Selectmail(props) {
                       <div className="col-12 col-md-8 mt-2">
                         <img
                           src={foot}
+                          alt="footer"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>
@@ -582,6 +582,7 @@ function Selectmail(props) {
                       <div className="col-12 col-md-8">
                         <img
                           src={headers}
+                          alt="headers"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>
@@ -617,6 +618,7 @@ function Selectmail(props) {
                       <div className="col-12 col-md-8 mt-2">
                         <img
                           src={approval}
+                          alt="approval"
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>

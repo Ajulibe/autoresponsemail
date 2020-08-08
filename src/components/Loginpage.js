@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import { Link } from "react-router-dom";
+
 import axios from "axios";
 
-import App from "../App";
 import { withRouter } from "react-router-dom";
 import logo from "./logo.svg";
 
@@ -130,7 +126,6 @@ export class Loginpage extends Component {
       })
 
       .catch((error) => {
-        console.log("error");
         // console.log(error.response);
       });
   }
@@ -144,7 +139,7 @@ export class Loginpage extends Component {
               {/* login */}
               <form
                 id="myform"
-                class="formsignup hideme"
+                className="formsignup hideme"
                 style={{
                   // backgroundColor: "white",
                   // boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
@@ -175,6 +170,7 @@ export class Loginpage extends Component {
                   <div>
                     <img
                       src={logo}
+                      alt="gtlogo"
                       style={{
                         width: "20%",
                         position: "absolute",
@@ -193,14 +189,14 @@ export class Loginpage extends Component {
                 >
                   <div className="input-group">
                     <div
-                      class="input-group-addon borderss"
+                      className="input-group-addon borderss"
                       style={{
                         borderRight: "0",
                         backgroundColor: "#eeeeee",
                         borderBottomLeftRadius: "0",
                       }}
                     >
-                      <i class="fa fa-envelope-o"></i>
+                      <i className="fa fa-envelope-o"></i>
                     </div>
                     <Form.Control
                       className="borderss stbnbd"
@@ -219,14 +215,14 @@ export class Loginpage extends Component {
 
                   <div className="input-group">
                     <div
-                      class="input-group-addon borderss borderNone"
+                      className="input-group-addon borderss borderNone"
                       style={{
                         borderRight: "0",
                         borderRadius: "0",
                         backgroundColor: "#eeeeee",
                       }}
                     >
-                      <i class="fa fa-key"></i>
+                      <i className="fa fa-key"></i>
                     </div>
 
                     <Form.Control
@@ -246,14 +242,14 @@ export class Loginpage extends Component {
                   </div>
                   <div className="input-group">
                     <div
-                      class="input-group-addon borderss borderNone"
+                      className="input-group-addon borderss borderNone"
                       style={{
                         borderRight: "0",
                         backgroundColor: "#eeeeee",
                         borderTopLeftRadius: "0",
                       }}
                     >
-                      <i class="fa fa-key"></i>
+                      <i className="fa fa-key"></i>
                     </div>
 
                     <Form.Control
@@ -302,7 +298,7 @@ export class Loginpage extends Component {
               {/* loginform */}
               <form
                 id="myform2"
-                class="formsignup"
+                className="formsignup"
                 style={{
                   // backgroundColor: "white",
                   // boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
@@ -333,6 +329,7 @@ export class Loginpage extends Component {
                   <div>
                     <img
                       src={logo}
+                      alt="gtlogo"
                       style={{
                         width: "20%",
                         position: "absolute",
@@ -351,14 +348,14 @@ export class Loginpage extends Component {
                 >
                   <div className="input-group">
                     <div
-                      class="input-group-addon borderss"
+                      className="input-group-addon borderss"
                       style={{
                         borderRight: "0",
                         backgroundColor: "#eeeeee",
                         borderBottomLeftRadius: "0",
                       }}
                     >
-                      <i class="fa fa-envelope-o"></i>
+                      <i className="fa fa-envelope-o"></i>
                     </div>
                     <Form.Control
                       className="borderss stbnbd"
@@ -377,14 +374,14 @@ export class Loginpage extends Component {
 
                   <div className="input-group">
                     <div
-                      class="input-group-addon borderss borderNone"
+                      className="input-group-addon borderss borderNone"
                       style={{
                         borderRight: "0",
                         borderTopLeftRadius: "0",
                         backgroundColor: "#eeeeee",
                       }}
                     >
-                      <i class="fa fa-key"></i>
+                      <i className="fa fa-key"></i>
                     </div>
 
                     <Form.Control
