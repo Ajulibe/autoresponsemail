@@ -5,7 +5,6 @@ import footers from "./footers.png";
 import foot from "./foot.png";
 import approval from "./approval.png";
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
 import axios from "axios";
 

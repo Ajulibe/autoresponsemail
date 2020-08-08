@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import headers from "./headers.png";
-import footers from "./footers.png";
-import foot from "./foot.png";
-import approval from "./approval.png";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MDBAnimation } from "mdbreact";
@@ -18,71 +13,23 @@ function Allmails(props) {
     if (!localStorage.getItem("token")) {
       props.history.push("/");
     }
-    getTask();
-  }, []);
 
-  // IDLE TIMER
-  const handleOnIdle = (event) => {
-    if (isTimedOut) {
-      localStorage.clear();
-      props.history.push("/");
-    } else {
-      setIsTimeOut(true);
-
-      if (window.confirm("Would you want to be logged Out?")) {
-        localStorage.clear();
-        props.history.push("/");
-      } else {
-        //remember to pull out this function from the
-        //useIdleTimer object below
-        if (getElapsedTime() >= 180000) {
-          localStorage.clear();
-          props.history.push("/");
+    //get all mails//always define the function inside use effect
+    const getTask = async () => {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        "https://auto-response-mail-backend.herokuapp.com/mails",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-        reset();
-      }
-    }
-  };
+      );
 
-  const handleOnActive = (event) => {};
-
-  const handleOnAction = (e) => {};
-
-  const {
-    getRemainingTime,
-    getLastActiveTime,
-    reset,
-    getElapsedTime,
-  } = useIdleTimer({
-    timeout: 1000 * 60 * 2,
-    onIdle: handleOnIdle,
-    onActive: handleOnActive,
-    onAction: handleOnAction,
-    debounce: 500,
-  });
-
-  const homeCall = (e) => {
-    e.preventDefault();
-    props.history.push("/selectmail");
-  };
-
-  //get all mails
-  const getTask = async () => {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(
-      "https://auto-response-mail-backend.herokuapp.com/mails",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    // console.log(response.data.mail);
-    const mailDiv = response.data.mail.map((mail) => {
-      return (
-        <tbody style={{ marginTop: "5%" }}>
-          <tr style={{}}>
+      // console.log(response.data.mail);
+      const mailDiv = response.data.mail.map((mail) => {
+        return (
+          <tr key={mail._id} style={{ marginTop: "5%" }}>
             {" "}
             <td
               className=""
@@ -139,11 +86,58 @@ function Allmails(props) {
               </MDBAnimation>
             </td>
           </tr>
-        </tbody>
-      );
-    });
+        );
+      });
 
-    refreshUser(mailDiv);
+      refreshUser(mailDiv);
+    };
+
+    getTask();
+  }, []);
+
+  // IDLE TIMER
+  const handleOnIdle = (event) => {
+    if (isTimedOut) {
+      localStorage.clear();
+      props.history.push("/");
+    } else {
+      setIsTimeOut(true);
+
+      if (window.confirm("Would you want to be logged Out?")) {
+        localStorage.clear();
+        props.history.push("/");
+      } else {
+        //remember to pull out this function from the
+        //useIdleTimer object below
+        if (getElapsedTime() >= 180000) {
+          localStorage.clear();
+          props.history.push("/");
+        }
+        reset();
+      }
+    }
+  };
+
+  const handleOnActive = (event) => {};
+
+  const handleOnAction = (e) => {};
+
+  const {
+    getRemainingTime,
+    getLastActiveTime,
+    reset,
+    getElapsedTime,
+  } = useIdleTimer({
+    timeout: 1000 * 60 * 2,
+    onIdle: handleOnIdle,
+    onActive: handleOnActive,
+    onAction: handleOnAction,
+    debounce: 500,
+  });
+
+  const homeCall = (e) => {
+    e.preventDefault();
+    props.history.push("/selectmail");
   };
 
   //set the state for returned mails
@@ -249,7 +243,7 @@ function Allmails(props) {
             textAlign: "center",
           }}
         >
-          <table class="table table-borderless mx-auto mt-3">
+          <table className="table table-borderless mx-auto mt-3">
             <thead>
               <tr>
                 <td>
@@ -290,7 +284,7 @@ function Allmails(props) {
                 </td>
               </tr>
             </thead>
-            {returnedMail}
+            <tbody>{returnedMail}</tbody>
           </table>
         </div>
       </div>

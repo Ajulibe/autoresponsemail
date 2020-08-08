@@ -77,7 +77,7 @@ export class Loginpage extends Component {
 
   loginRoute = (event) => {
     event.preventDefault();
-    console.log("You are submitting " + this.state.Username);
+
     const { Username, password } = this.state;
     const token = localStorage.getItem("token");
     axios
@@ -95,8 +95,6 @@ export class Loginpage extends Component {
         }
       )
       .then((response) => {
-        console.log(response.data);
-
         const token = response.data.token;
 
         if (response.data.message === "success") {
@@ -106,15 +104,12 @@ export class Loginpage extends Component {
         }
       })
 
-      .catch((error) => {
-        console.log("We are getting this error:");
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   registerRoute(event) {
     event.preventDefault();
-    console.log("You are submitting " + this.state.Username);
+
     const { Username, password } = this.state;
     if (this.state.password !== this.state.confirmPassword) {
       alert("Password and Confirm Password are not Identical");
