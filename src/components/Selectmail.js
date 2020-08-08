@@ -160,10 +160,7 @@ function Selectmail(props) {
   };
 
   return (
-    <div
-      className="container-fluid selectmail"
-      style={{ height: "100vh", position: "fixed" }}
-    >
+    <div className="container-fluid selectmail" style={{ height: "100vh" }}>
       <div className="row no-gutters" style={{}}>
         <nav className="clearfix">
           {" "}
