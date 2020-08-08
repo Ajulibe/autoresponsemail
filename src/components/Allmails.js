@@ -224,7 +224,10 @@ function Allmails(props) {
 
       {/* major row */}
 
-      <div className="row d-flex justify-content-center mt-5" style={{}}>
+      <div
+        className="row d-flex justify-content-center mt-5"
+        style={{ marginTop: "0" }}
+      >
         <div
           className="col-11 col-md-10 table-responsive-md"
           style={{
