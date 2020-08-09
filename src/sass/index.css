@@ -340,3 +340,6 @@ html {
 
 .gradient {
   background: linear-gradient(rgba(169, 65, 4, 0.945), rgba(169, 78, 4, 0.827), #d96d00); }
+
+.loaderOn {
+  display: none; }

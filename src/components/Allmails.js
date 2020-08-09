@@ -38,7 +38,11 @@ function Allmails(props) {
     // console.log(response.data.mail);
     const mailDiv = response.data.mail.map((mail) => {
       return (
-        <tr key={mail._id} style={{ marginTop: "5%" }}>
+        <tr
+          key={mail._id}
+          style={{ marginTop: "5%" }}
+          className="animated fadeInDown"
+        >
           <td
             className=""
             style={{

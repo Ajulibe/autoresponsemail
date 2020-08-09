@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import logo from "./logo.svg";
-
+import loader from "./loader.gif";
 export class Loginpage extends Component {
   constructor(props) {
     super(props);
@@ -70,6 +70,10 @@ export class Loginpage extends Component {
 
   loginRoute = (event) => {
     event.preventDefault();
+    const btn2 = document.getElementById("onme");
+    const btn = document.getElementById("loader");
+    btn2.classList.toggle("loaderOn");
+    btn.classList.remove("loaderOn");
 
     const { Username, password } = this.state;
     const token = sessionStorage.getItem("token");
@@ -95,6 +99,10 @@ export class Loginpage extends Component {
           this.setState({ authenticated: true });
           this.props.history.push("/selectmail");
         } else {
+          const btn2 = document.getElementById("onme");
+          const btn = document.getElementById("loader");
+          btn2.classList.toggle("loaderOn");
+          btn.classList.add("loaderOn");
           alert("Invalid Username or Password");
         }
       })
@@ -104,6 +112,10 @@ export class Loginpage extends Component {
 
   registerRoute(event) {
     event.preventDefault();
+    const btn2 = document.getElementById("onme1");
+    const btn = document.getElementById("loader1");
+    btn2.classList.toggle("loaderOn");
+    btn.classList.remove("loaderOn");
 
     const { Username, password } = this.state;
     if (this.state.password !== this.state.confirmPassword) {
@@ -123,6 +135,10 @@ export class Loginpage extends Component {
           sessionStorage.setItem("token", token);
           this.props.history.push("/selectmail");
         } else {
+          const btn2 = document.getElementById("onme1");
+          const btn = document.getElementById("loader1");
+          btn2.classList.toggle("loaderOn");
+          btn.classList.add("loaderOn");
           alert("Invalid Email");
         }
       })
@@ -286,6 +302,7 @@ export class Loginpage extends Component {
                   </Button>
                   {/* <Link to="/selectmail"> */}
                   <Button
+                    id="onme1"
                     type="submit"
                     onClick={this.registerRoute}
                     className="orange"
@@ -293,6 +310,16 @@ export class Loginpage extends Component {
                     style={{ float: "right" }}
                   >
                     Create Account
+                  </Button>
+                  <Button
+                    id="loader1"
+                    type="submit"
+                    onClick={this.registerRoute}
+                    className="orange loaderOn"
+                    size="sm"
+                    style={{ float: "right" }}
+                  >
+                    <img src={loader} style={{ maxWidth: "100%" }}></img>
                   </Button>
                   {/* </Link> */}
                 </Form.Group>
@@ -406,7 +433,20 @@ export class Loginpage extends Component {
 
                 <Form.Group style={{ paddingTop: "5px" }}>
                   <Button
-                    className="orange"
+                    className="orange loaderOn"
+                    id="loader"
+                    size="sm"
+                    type="submit"
+                    style={{
+                      float: "left",
+                    }}
+                    onClick={this.loginRoute}
+                  >
+                    <img src={loader} style={{ maxWidth: "100%" }}></img>
+                  </Button>
+                  <Button
+                    className="orange loaderOf"
+                    id="onme"
                     size="sm"
                     type="submit"
                     style={{
