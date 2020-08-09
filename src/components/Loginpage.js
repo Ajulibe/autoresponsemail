@@ -143,9 +143,7 @@ export class Loginpage extends Component {
         }
       })
 
-      .catch((error) => {
-        // console.log(error.response);
-      });
+      .catch((error) => {});
   }
 
   render() {
@@ -157,6 +155,7 @@ export class Loginpage extends Component {
               {/* login */}
               <form
                 id="myform"
+                autocomplete="on"
                 className="formsignup hideme"
                 style={{
                   // backgroundColor: "white",
@@ -220,7 +219,7 @@ export class Loginpage extends Component {
                       className="borderss stbnbd"
                       value={this.state.Username}
                       name="Username"
-                      type="Username"
+                      type="email"
                       placeholder="johnjane@example.com"
                       onChange={this.handleChange}
                       style={{
@@ -319,7 +318,11 @@ export class Loginpage extends Component {
                     size="sm"
                     style={{ float: "right" }}
                   >
-                    <img src={loader} style={{ maxWidth: "100%" }}></img>
+                    <img
+                      src={loader}
+                      alt="loader"
+                      style={{ maxWidth: "100%" }}
+                    ></img>
                   </Button>
                   {/* </Link> */}
                 </Form.Group>
@@ -327,6 +330,7 @@ export class Loginpage extends Component {
               {/* loginform */}
               <form
                 id="myform2"
+                autocomplete="on"
                 className="formsignup"
                 style={{
                   // backgroundColor: "white",
@@ -390,7 +394,7 @@ export class Loginpage extends Component {
                       className="borderss stbnbd"
                       value={this.state.Username}
                       name="Username"
-                      type="Username"
+                      type="email"
                       placeholder="johnjane@example.com"
                       onChange={this.handleChange}
                       style={{
@@ -442,7 +446,11 @@ export class Loginpage extends Component {
                     }}
                     onClick={this.loginRoute}
                   >
-                    <img src={loader} style={{ maxWidth: "100%" }}></img>
+                    <img
+                      src={loader}
+                      alt="loader"
+                      style={{ maxWidth: "100%" }}
+                    ></img>
                   </Button>
                   <Button
                     className="orange loaderOf"
