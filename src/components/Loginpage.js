@@ -61,7 +61,7 @@ export class Loginpage extends Component {
   toogleDisplay = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    this.setState({ Username: "", password: "" });
+    this.setState({ Username: "", password: "", confirmPassword: "" });
     const login = document.getElementById("myform");
     const register = document.getElementById("myform2");
     login.classList.toggle("hideme");
@@ -112,15 +112,26 @@ export class Loginpage extends Component {
 
   registerRoute(event) {
     event.preventDefault();
-    const btn2 = document.getElementById("onme1");
-    const btn = document.getElementById("loader1");
-    btn2.classList.toggle("loaderOn");
-    btn.classList.remove("loaderOn");
 
     const { Username, password } = this.state;
     if (this.state.password !== this.state.confirmPassword) {
       alert("Password and Confirm Password are not Identical");
+      this.setState({ password: "", confirmPassword: "" });
+      return;
+    } else if (
+      this.state.password === "" ||
+      this.state.confirmPassword === ""
+    ) {
+      alert("Password and Confirm Password fields cannot be empty");
+      // this.setState({ password: "", confirmPassword: "" });
+      return;
+    } else {
+      const btn2 = document.getElementById("onme1");
+      const btn = document.getElementById("loader1");
+      btn2.classList.toggle("loaderOn");
+      btn.classList.remove("loaderOn");
     }
+
     axios
       .post("https://auto-response-mail-backend.herokuapp.com/signup", {
         username: Username,
@@ -139,7 +150,7 @@ export class Loginpage extends Component {
           const btn = document.getElementById("loader1");
           btn2.classList.toggle("loaderOn");
           btn.classList.add("loaderOn");
-          alert("Invalid Email");
+          alert("Invalid Email or Password");
         }
       })
 
@@ -247,7 +258,7 @@ export class Loginpage extends Component {
                       value={this.state.password}
                       name="password"
                       type="password"
-                      placeholder="******************"
+                      placeholder="Password"
                       onChange={this.handleChange}
                       style={{
                         borderLeft: "0",
@@ -422,7 +433,7 @@ export class Loginpage extends Component {
                       value={this.state.password}
                       name="password"
                       type="password"
-                      placeholder="***************"
+                      placeholder="Password"
                       onChange={this.handleChange}
                       style={{
                         borderLeft: "0",

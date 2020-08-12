@@ -273,7 +273,7 @@ function Selectmail(props) {
                 className="input-group-addon"
                 style={{ borderRight: "0", borderBottomLeftRadius: "0" }}
               >
-                @
+                <i className="fa fa-address-book-o"></i>
               </div>
               <input
                 className="form-control innerworks"
@@ -392,6 +392,16 @@ function Selectmail(props) {
                         up for use.
                         <br />
                         <br />
+                        Learn more at{" "}
+                        <a
+                          href="https://developer.gtbank.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://developer.gtbank.com
+                        </a>
+                        <br />
+                        <br />
                         Thank you.
                       </div>
                     </div>
@@ -505,6 +515,16 @@ function Selectmail(props) {
                           Kindly share the email address of the person/persons
                           to test the APIs so we can approve after an account
                           has been created.
+                          <br />
+                          <br />
+                          Learn more at{" "}
+                          <a
+                            href="https://developer.gtbank.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://developer.gtbank.com
+                          </a>
                         </div>
                       </div>
                       <br />
@@ -618,6 +638,16 @@ function Selectmail(props) {
                           <br />
                           <br />
                           Welcome to the GTBank API Community
+                          <br />
+                          <br />
+                          Learn more at{" "}
+                          <a
+                            href="https://developer.gtbank.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://developer.gtbank.com
+                          </a>
                         </div>
                       </div>
                       <br />
