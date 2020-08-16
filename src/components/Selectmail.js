@@ -341,7 +341,11 @@ function Selectmail(props) {
             <div className="input-group">
               <div
                 className="input-group-addon"
-                style={{ borderRight: "0", borderTopLeftRadius: "0" }}
+                style={{
+                  borderRight: "0",
+                  borderTopLeftRadius: "0",
+                  borderBottomLeftRadius: "0",
+                }}
               >
                 <i className="fa fa-envelope-o"></i>
               </div>
@@ -357,6 +361,7 @@ function Selectmail(props) {
                   borderLeft: "0",
                   fontSize: "1rem",
                   borderTopRightRadius: "0",
+                  borderBottomRightRadius: "0",
                 }}
               />
             </div>
@@ -365,7 +370,7 @@ function Selectmail(props) {
             <div className="input-group">
               <div
                 className="input-group-addon"
-                style={{ borderRight: "0", borderBottomLeftRadius: "0" }}
+                style={{ borderRight: "0", borderTopLeftRadius: "0" }}
               >
                 <i className="fa fa-id-badge"></i>
               </div>
@@ -378,7 +383,7 @@ function Selectmail(props) {
                 onChange={applicationNameChange}
                 style={{
                   borderLeft: "0",
-                  borderBottomRightRadius: "0",
+                  borderTopRightRadius: "0",
                   fontSize: "1rem",
                 }}
               />
@@ -770,7 +775,7 @@ function Selectmail(props) {
               width: "100%",
             }}
           >
-            API pricing
+            API Pricing
           </button>
           <div
             className="modal fade"
@@ -826,25 +831,34 @@ function Selectmail(props) {
                           pending the approval of your request:
                           <br />
                           <br />
-                          <p>1. Certificate of incorporation.</p>
-                          <br />
                           <p>
-                            2. A valid means of identification of directors.
+                            <b>1.</b> Certificate of incorporation.
                           </p>
                           <br />
                           <p>
-                            3. *Account details with GTBank with a minimum
-                            capital balance of #150,000 subject to change as you
-                            consume our APIs.
+                            <b>2.</b> A valid means of identification of
+                            directors.
                           </p>
                           <br />
-                          <p>4. A description of the registered company.</p>
-                          <br />
-                          <p>5. A description of the requested application.</p>
+                          <p>
+                            <b>3.</b>
+                            *Account details with GTBank with a minimum capital
+                            balance of N150,000 subject to change as you consume
+                            our APIs.
+                          </p>
                           <br />
                           <p>
-                            6. An instruction letter authorizing the bank to
-                            debit account for the use of the APIs.
+                            <b>4.</b> A description of the registered company.
+                          </p>
+                          <br />
+                          <p>
+                            <b>5.</b> A description of the requested
+                            application.
+                          </p>
+                          <br />
+                          <p>
+                            <b>6.</b> An instruction letter authorizing the bank
+                            to debit account for the use of the APIs.
                           </p>
                           <br />
                           <br />
