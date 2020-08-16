@@ -303,7 +303,7 @@ function Selectmail(props) {
             height: "70vh",
             top: "0",
             left: "20%",
-            opacity: "20%",
+            opacity: "13%",
           }}
         ></img>
         <form
