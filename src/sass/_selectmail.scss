@@ -316,6 +316,12 @@ nav {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .widthincrease {
+    width: 75% !important;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .buttonwidth {
     width: 120% !important;
@@ -343,7 +349,8 @@ a:hover {
   border: 1px solid $orange-button !important;
 }
 
-.innerworks:focus {
+.innerworks:focus,
+.innerworks:active {
   border: 1px solid $orange-button !important;
   outline: 0 !important;
 }
@@ -353,11 +360,17 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  // .loginbut {
-  //   font-size: 0.4rem;
-  // }
+  .widthincrease {
+    width: 100% !important;
+  }
 
   .titleSize {
     font-size: 0.7rem;
+  }
+}
+
+@media screen and (min-width: 812px) {
+  .widthincrease {
+    width: 90% !important;
   }
 }

@@ -1,8 +1,9 @@
 @import "./selectmail";
 
 body {
+  background-color: rgba(221, 212, 212, 0.575);
   margin: 0;
-  font-family: "Roboto" !important;
+  font-family: "Poppins", "Roboto" !important;
   font-size: 22px !important;
 }
 
@@ -145,4 +146,17 @@ html {
 
 .loaderOn {
   display: none;
+}
+
+::selection {
+  background-color: #b54c0e;
+  color: white;
+}
+
+.rmpadding {
+  padding-left: 0 !important;
+}
+
+.colordetail {
+  background-color: rgba(0, 0, 0, 0.2);
 }

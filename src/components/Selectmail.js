@@ -6,6 +6,7 @@ import foot from "./foot.png";
 import approval from "./approval.png";
 import working from "./working.png";
 import congrats from "./congrats.png";
+import payments from "./payments.svg";
 import { withRouter } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
 import axios from "axios";
@@ -13,6 +14,7 @@ import axios from "axios";
 function Selectmail(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [applicationName, setApplicationName] = useState("");
   const [isTimedOut, setIsTimeOut] = useState(false);
 
   useEffect(() => {
@@ -66,6 +68,10 @@ function Selectmail(props) {
     setEmail(event.target.value);
   };
 
+  const applicationNameChange = (event) => {
+    setApplicationName(event.target.value);
+  };
+
   const sendApprovalMail = () => {
     const token = sessionStorage.getItem("token");
     axios
@@ -74,6 +80,7 @@ function Selectmail(props) {
         {
           receiverName: username,
           receiverEmail: email,
+          applicationName: applicationName,
         },
         {
           headers: {
@@ -162,7 +169,7 @@ function Selectmail(props) {
   };
 
   return (
-    <div className="container-fluid selectmail" style={{ height: "100vh" }}>
+    <div className="container-fluid" style={{ height: "100vh" }}>
       <div className="row no-gutters" style={{}}>
         <nav className="clearfix">
           {" "}
@@ -237,9 +244,7 @@ function Selectmail(props) {
           </div>
         </nav>
       </div>
-
       {/* major row */}
-
       <div className="row d-flex logoTop" style={{ marginLeft: "70%" }}>
         <div className="col-12 col-md-12 ">
           {" "}
@@ -273,7 +278,7 @@ function Selectmail(props) {
                 className="input-group-addon"
                 style={{ borderRight: "0", borderBottomLeftRadius: "0" }}
               >
-                <i className="fa fa-address-book-o"></i>
+                <i className="fa fa-user"></i>
               </div>
               <input
                 className="form-control innerworks"
@@ -314,16 +319,37 @@ function Selectmail(props) {
               />
             </div>
           </div>
+          <div className="form-group">
+            <div className="input-group">
+              <div
+                className="input-group-addon"
+                style={{ borderRight: "0", borderBottomLeftRadius: "0" }}
+              >
+                <i className="fa fa-id-badge"></i>
+              </div>
+              <input
+                className="form-control innerworks"
+                name="applicationName"
+                type="text"
+                value={applicationName}
+                placeholder="Application Name"
+                onChange={applicationNameChange}
+                style={{
+                  borderLeft: "0",
+                  borderBottomRightRadius: "0",
+                  fontSize: "1rem",
+                }}
+              />
+            </div>
+          </div>
         </form>
       </div>
       {/* newstuffffffffffff */}
-      <br />
-      <br />
       <div
-        className="row d-flex w-50 justify-content-center mx-auto justify-content-md-between align-content-around"
+        className="row d-flex w-50 w-md-75 justify-content-center mx-auto justify-content-md-between align-content-around mt-0 widthincrease"
         // style={{ border: "1px solid black" }}
       >
-        <div className="col-7 col-md-3 d-flex align-self-center justify-content-center px-0 mt-md-5">
+        <div className="col-7 col-md-2 d-flex align-self-center justify-content-center px-0 mt-md-5">
           <button
             type="button"
             data-toggle="modal"
@@ -392,16 +418,6 @@ function Selectmail(props) {
                         up for use.
                         <br />
                         <br />
-                        Learn more at{" "}
-                        <a
-                          href="https://developer.gtbank.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          https://developer.gtbank.com
-                        </a>
-                        <br />
-                        <br />
                         Thank you.
                       </div>
                     </div>
@@ -413,6 +429,17 @@ function Selectmail(props) {
                         style={{ maxWidth: "100%" }}
                         className="previewImg"
                       ></img>
+                      <br />
+                      <p style={{ alignText: "center", fontSize: "0.9rem" }}>
+                        Learn more at{" "}
+                        <a
+                          href="https://developer.gtbank.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://developer.gtbank.com
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -439,7 +466,7 @@ function Selectmail(props) {
           </div>
         </div>
         {/* second column */}
-        <div className="col-7 col-md-3 d-flex align-self-center justify-content-center mt-3 mt-md-5 px-0">
+        <div className="col-7 col-md-2 d-flex align-self-center justify-content-center mt-3 mt-md-5 px-0">
           <button
             type="button"
             data-toggle="modal"
@@ -498,7 +525,7 @@ function Selectmail(props) {
                       >
                         <br />
                         <br />
-                        <p>Dear {username}, </p>
+                        <p>Dear Sir/Ma, </p>
                         <div style={{ textAlign: "justify" }}>
                           GTBank API developer portal is built to allow third
                           party developers integrate with our APIs easily.
@@ -516,15 +543,6 @@ function Selectmail(props) {
                           to test the APIs so we can approve after an account
                           has been created.
                           <br />
-                          <br />
-                          Learn more at{" "}
-                          <a
-                            href="https://developer.gtbank.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://developer.gtbank.com
-                          </a>
                         </div>
                       </div>
                       <br />
@@ -535,6 +553,17 @@ function Selectmail(props) {
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>
+                        <br />
+                        <p style={{ alignText: "center", fontSize: "0.9rem" }}>
+                          Learn more at{" "}
+                          <a
+                            href="https://developer.gtbank.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://developer.gtbank.com
+                          </a>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -561,7 +590,7 @@ function Selectmail(props) {
           </div>
         </div>
 
-        <div className="col-7 col-md-3 d-flex align-self-center justify-content-center mt-3 mt-md-5 px-0">
+        <div className="col-7 col-md-2 d-flex align-self-center justify-content-center mt-3 mt-md-5 px-0 mb-0">
           <button
             type="button"
             data-toggle="modal"
@@ -627,8 +656,9 @@ function Selectmail(props) {
                           <br />
                           <br />
                           We are happy to inform you that your request has been
-                          granted and your application ... has been successfully
-                          migrated from the sandbox to the live plan.
+                          granted and your application({applicationName}) has
+                          been successfully migrated from the sandbox to the
+                          live plan.
                           <br />
                           <br />
                           Kindly note that a lien has been placed on the
@@ -639,15 +669,6 @@ function Selectmail(props) {
                           <br />
                           Welcome to the GTBank API Community
                           <br />
-                          <br />
-                          Learn more at{" "}
-                          <a
-                            href="https://developer.gtbank.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://developer.gtbank.com
-                          </a>
                         </div>
                       </div>
                       <br />
@@ -658,6 +679,17 @@ function Selectmail(props) {
                           style={{ maxWidth: "100%" }}
                           className="previewImg"
                         ></img>
+                        <br />
+                        <p style={{ alignText: "center", fontSize: "0.9rem" }}>
+                          Learn more at{" "}
+                          <a
+                            href="https://developer.gtbank.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://developer.gtbank.com
+                          </a>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -683,23 +715,305 @@ function Selectmail(props) {
             </div>
           </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <div className="row d-flex justify-content-center mt-md-5" style={{}}>
-        <div
-          className="col-11 col-md-7 "
-          style={{
-            fontSize: "1rem",
-            backgroundColor: "grey",
-            borderRadius: "2px",
-            opacity: "0.7",
-            color: "black",
-            textAlign: "center",
-          }}
-        >
-          This Email Service Platform allows you to personalize already written
-          mails to developers registered on the GTBank developers portal
+
+        {/* API PRICING */}
+        <div className="col-7 col-md-2 d-flex align-self-center justify-content-center mt-0 mt-md-5 px-0">
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#exampleModalCenter4"
+            className="btn btn-primary btn-sm  orange"
+            style={{
+              fontSize: "0.9rem",
+              width: "100%",
+            }}
+          >
+            API pricing
+          </button>
+          <div
+            className="modal fade"
+            id="exampleModalCenter4"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle4"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalCenterTitle4">
+                    EMAIL PREVIEW
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  {" "}
+                  <div className="modal-body">
+                    <div
+                      className="row d-flex justify-content-md-center previewDiv"
+                      style={{}}
+                    >
+                      <div className="col-12 col-md-8">
+                        <img
+                          src={working}
+                          alt="headers"
+                          style={{ maxWidth: "100%" }}
+                          className="previewImg"
+                        ></img>
+                      </div>
+                      <div
+                        className="col-12 col-md-8"
+                        style={{
+                          fontSize: "1rem",
+                          textAlign: "left",
+                        }}
+                      >
+                        <br />
+                        <br />
+                        <p>Dear {username}, </p>
+                        <div style={{ textAlign: "justify" }}>
+                          We received your request to upgrade to production for
+                          the "{applicationName} application" on your profile.
+                          Kindly reply this mail with the following documents
+                          pending the approval of your request:
+                          <br />
+                          <br />
+                          <p>1. Certificate of incorporation.</p>
+                          <br />
+                          <p>
+                            2. A valid means of identification of directors.
+                          </p>
+                          <br />
+                          <p>
+                            3. *Account details with GTBank with a minimum
+                            capital balance of #150,000 subject to change as you
+                            consume our APIs.
+                          </p>
+                          <br />
+                          <p>4. A description of the registered company.</p>
+                          <br />
+                          <p>5. A description of the requested application.</p>
+                          <br />
+                          <p>
+                            6. An instruction letter authorizing the bank to
+                            debit account for the use of the APIs.
+                          </p>
+                          <br />
+                          <br />
+                          *Please note that by accepting to upgrade to
+                          production, we are obliged to put a lien on your
+                          account for the minimum capital balance upon approval
+                          of the request.
+                          <br />
+                          <br />
+                          <br />
+                          Find below the price list of the APIs:
+                          <br />
+                          <br />
+                          {/* PRICING TABLE */}
+                          <div className="d-flex flex-column">
+                            <div
+                              className="d-flex col-11 col-md-12 table-responsive-md rmpadding"
+                              style={{
+                                fontSize: "1rem",
+                                borderRadius: "2px",
+                                color: "black",
+                                textAlign: "center",
+                              }}
+                            >
+                              <table className="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <td>S/N</td>
+                                    <td>Account APIs</td>
+                                    <td>Price</td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Account opening with BVN</td>
+                                    <td>NGN0.00</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2</td>
+                                    <td>Account opening without BVN</td>
+                                    <td>NGN0.00</td>
+                                  </tr>
+                                  <tr>
+                                    <td>3</td>
+                                    <td>Balance check</td>
+                                    <td>
+                                      NGN
+                                      <span style={{ color: "#DE98FF" }}>
+                                        10.00
+                                      </span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>4</td>
+                                    <td>Transaction history</td>
+                                    <td>
+                                      NGN
+                                      <span style={{ color: "#DE98FF" }}>
+                                        75.00
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <br />
+                            <br />
+                            {/* SECOND TABLE */}
+                            <div
+                              className=" col-11 col-md-12 table-responsive-md rmpadding"
+                              style={{
+                                fontSize: "1rem",
+                                borderRadius: "2px",
+                                color: "black",
+                                textAlign: "center",
+                              }}
+                            >
+                              <table className="table table-bordered mx-auto">
+                                <thead>
+                                  <tr>
+                                    <td>S/N</td>
+                                    <td>Payment APIs</td>
+                                    <td>Price</td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Intrabank transfer</td>
+
+                                    <td>
+                                      NGN
+                                      <span style={{ color: "#DE98FF" }}>
+                                        10.00
+                                      </span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>2</td>
+                                    <td>Intrabank transfer</td>
+                                    <td>
+                                      NGN
+                                      <span style={{ color: "#DE98FF" }}>
+                                        10.00
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <br />
+                            <br />
+                            {/* THIRD TABLE */}
+                            <div
+                              className=" col-11 col-md-12 table-responsive-md rmpadding"
+                              style={{
+                                fontSize: "1rem",
+                                borderRadius: "2px",
+                                color: "black",
+                                textAlign: "center",
+                              }}
+                            >
+                              <table className="table table-bordered mx-auto">
+                                <thead>
+                                  <tr>
+                                    <td>S/N</td>
+                                    <td>Identity APIs</td>
+                                    <td>Price</td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Name lookup</td>
+
+                                    <td>
+                                      NGN
+                                      <span>0.00</span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <br />
+                          Please note prices attracts VAT @7.5%
+                          <br />
+                        </div>
+                      </div>
+                      <br />
+                      <div className="col-12 col-md-8 mt-2">
+                        <img
+                          src={foot}
+                          alt="approval"
+                          style={{ maxWidth: "100%" }}
+                          className="previewImg"
+                        ></img>
+                        <br />
+                        <p style={{ alignText: "center", fontSize: "0.9rem" }}>
+                          Learn more at{" "}
+                          <a
+                            href="https://developer.gtbank.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://developer.gtbank.com
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer d-fex justify-content-center">
+                  <button
+                    type="button"
+                    className="btn btn-sm white"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-sm orange"
+                    data-dismiss="modal"
+                    onClick={sendApprovalMail}
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <div className="row d-flex justify-content-center mt-md-5 mx-auto mb-4">
+          <div
+            className="col-12 col-md-12 colordetail"
+            style={{
+              fontSize: "1rem",
+              borderRadius: "2px",
+              color: "black",
+              textAlign: "center",
+            }}
+          >
+            This Email Service Platform allows you to personalize already
+            written mails to developers registered on the GTBank developers
+            portal
+          </div>
         </div>
       </div>
     </div>

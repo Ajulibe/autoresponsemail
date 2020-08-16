@@ -203,6 +203,10 @@ nav {
       color: #eee;
       font-size: 1rem; }
 
+@media screen and (min-width: 1024px) {
+  .widthincrease {
+    width: 75% !important; } }
+
 @media screen and (min-width: 768px) {
   .buttonwidth {
     width: 120% !important; }
@@ -221,7 +225,8 @@ a:hover {
 .srmv:focus {
   border: 1px solid #d94f00 !important; }
 
-.innerworks:focus {
+.innerworks:focus,
+.innerworks:active {
   border: 1px solid #d94f00 !important;
   outline: 0 !important; }
 
@@ -229,12 +234,19 @@ a:hover {
   color: #d94f00 !important; }
 
 @media screen and (max-width: 768px) {
+  .widthincrease {
+    width: 100% !important; }
   .titleSize {
     font-size: 0.7rem; } }
 
+@media screen and (min-width: 812px) {
+  .widthincrease {
+    width: 90% !important; } }
+
 body {
+  background-color: rgba(221, 212, 212, 0.575);
   margin: 0;
-  font-family: "Roboto" !important;
+  font-family: "Poppins", "Roboto" !important;
   font-size: 22px !important; }
 
 html {
@@ -343,3 +355,13 @@ html {
 
 .loaderOn {
   display: none; }
+
+::selection {
+  background-color: #b54c0e;
+  color: white; }
+
+.rmpadding {
+  padding-left: 0 !important; }
+
+.colordetail {
+  background-color: rgba(0, 0, 0, 0.2); }
