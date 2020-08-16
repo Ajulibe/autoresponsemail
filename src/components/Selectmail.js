@@ -131,6 +131,36 @@ function Selectmail(props) {
       });
   };
 
+  const sendPriceListMail = () => {
+    const token = sessionStorage.getItem("token");
+    axios
+      .post(
+        "https://auto-response-mail-backend.herokuapp.com/priceList",
+        {
+          receiverName: username,
+          receiverEmail: email,
+          applicationName: applicationName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.message === "success") {
+          alert("Price List Mail Sent");
+          window.location.reload();
+        } else {
+          alert("Mail not sent");
+        }
+      })
+
+      .catch((error) => {
+        console.log("An Error Occurred");
+      });
+  };
+
   const sendInvitationMail = () => {
     const token = sessionStorage.getItem("token");
     axios
@@ -988,7 +1018,7 @@ function Selectmail(props) {
                     type="button"
                     className="btn btn-sm orange"
                     data-dismiss="modal"
-                    onClick={sendApprovalMail}
+                    onClick={sendPriceListMail}
                   >
                     Send
                   </button>

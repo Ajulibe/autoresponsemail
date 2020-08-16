@@ -72,7 +72,7 @@ export class Loginpage extends Component {
     event.preventDefault();
     const btn2 = document.getElementById("onme");
     const btn = document.getElementById("loader");
-    btn2.classList.toggle("loaderOn");
+    btn2.classList.add("loaderOn");
     btn.classList.remove("loaderOn");
 
     const { Username, password } = this.state;
@@ -101,7 +101,7 @@ export class Loginpage extends Component {
         } else {
           const btn2 = document.getElementById("onme");
           const btn = document.getElementById("loader");
-          btn2.classList.toggle("loaderOn");
+          btn2.classList.remove("loaderOn");
           btn.classList.add("loaderOn");
           alert("Invalid Username or Password");
         }

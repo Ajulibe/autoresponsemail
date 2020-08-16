@@ -1,6 +1,6 @@
 //VARIABLES
-$orange-button: #d94f00;
-$darkenamount: 10%;
+$orange-button: #cf5108;
+$darkenamount: 40%;
 
 .small-button > button {
   width: 25%;
@@ -8,6 +8,7 @@ $darkenamount: 10%;
 
   &:hover {
     background-color: darken($orange-button, $darkenamount);
+    box-shadow: 0 1 4rem rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -124,7 +125,7 @@ $darkenamount: 10%;
   }
 
   .titleSize {
-    font-size: 1rem;
+    font-size: 0.8rem !important;
   }
 }
 
@@ -186,6 +187,12 @@ $darkenamount: 10%;
 
   .titleSize {
     font-size: 0.8rem !important;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .titleSize {
+    font-size: 0.9rem !important;
   }
 }
 
@@ -353,6 +360,7 @@ a:hover {
 .innerworks:active {
   border: 1px solid $orange-button !important;
   outline: 0 !important;
+  background-color: white;
 }
 
 .homeRed {
@@ -365,7 +373,7 @@ a:hover {
   }
 
   .titleSize {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 }
 

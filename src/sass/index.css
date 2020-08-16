@@ -1,8 +1,9 @@
 .small-button > button {
   width: 25%;
-  background-color: #d94f00; }
+  background-color: #cf5108; }
   .small-button > button:hover {
-    background-color: #a63c00; }
+    background-color: #0b0400;
+    box-shadow: 0 1 4rem rgba(0, 0, 0, 0.4); }
 
 .small-button {
   display: flex;
@@ -81,7 +82,7 @@
     font-weight: 600;
     font-family: Roboto; }
   .titleSize {
-    font-size: 1rem; } }
+    font-size: 0.8rem !important; } }
 
 @media screen and (max-width: 450px) {
   .deletePad {
@@ -122,6 +123,10 @@
     font-family: Roboto; }
   .titleSize {
     font-size: 0.8rem !important; } }
+
+@media screen and (max-width: 414px) {
+  .titleSize {
+    font-size: 0.9rem !important; } }
 
 nav {
   margin: 0;
@@ -185,7 +190,7 @@ nav {
   background-color: #912f4a; }
 
 .input-group-addon {
-  color: #d94f00;
+  color: #cf5108;
   background-color: #ffffff; }
 
 .navigation2 {
@@ -214,30 +219,31 @@ nav {
     margin-left: 87% !important;
     margin-top: 1%; }
   .reloadPg:hover {
-    color: #a63c00 !important; } }
+    color: #9e3e06 !important; } }
 
 .orange:hover {
   background-color: black !important; }
 
 a:hover {
-  color: #a63c00 !important; }
+  color: #9e3e06 !important; }
 
 .srmv:focus {
-  border: 1px solid #d94f00 !important; }
+  border: 1px solid #cf5108 !important; }
 
 .innerworks:focus,
 .innerworks:active {
-  border: 1px solid #d94f00 !important;
-  outline: 0 !important; }
+  border: 1px solid #cf5108 !important;
+  outline: 0 !important;
+  background-color: white; }
 
 .homeRed {
-  color: #d94f00 !important; }
+  color: #cf5108 !important; }
 
 @media screen and (max-width: 768px) {
   .widthincrease {
     width: 100% !important; }
   .titleSize {
-    font-size: 0.7rem; } }
+    font-size: 1rem; } }
 
 @media screen and (min-width: 812px) {
   .widthincrease {
@@ -268,7 +274,6 @@ html {
   font-size: small; }
 
 .robot {
-  font-family: "Roboto" !important;
   font-weight: 500; }
 
 .background {
@@ -310,12 +315,20 @@ html {
   background-color: #eeeeee !important;
   color: rgba(188, 72, 4, 0.945) !important;
   width: 45%; }
+  @media only screen and (max-width: 768px) {
+    .loginbut {
+      font-size: 10px; } }
 
 .orange {
   border: 1px solid #ca4d05 !important;
-  background: linear-gradient(rgba(169, 65, 4, 0.945), #d94f00) !important;
+  background-image: linear-gradient(rgba(169, 65, 4, 0.945), #d94f00) !important;
   color: white !important;
-  width: 45%; }
+  width: 45%;
+  box-shadow: 0 1rem 3rem rgba(226, 222, 222, 0.2);
+  transition: all 0.3s !important; }
+  .orange:hover {
+    box-shadow: 0 1rem 3rem rgba(226, 222, 222, 0.5);
+    background-image: linear-gradient(#d94f00, rgba(169, 65, 4, 0.945)) !important; }
 
 .borderss {
   border-color: rgba(233, 92, 10, 0.918) !important; }

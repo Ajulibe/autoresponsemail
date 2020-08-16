@@ -2,6 +2,7 @@
 
 body {
   background-color: rgba(221, 212, 212, 0.575);
+  // background-color: #fff;
   margin: 0;
   font-family: "Poppins", "Roboto" !important;
   font-size: 22px !important;
@@ -35,7 +36,6 @@ html {
 }
 
 .robot {
-  font-family: "Roboto" !important;
   font-weight: 500;
 }
 
@@ -81,17 +81,31 @@ html {
   background-color: #eeeeee !important;
   color: rgba(188, 72, 4, 0.945) !important;
   width: 45%;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 }
 
 .orange {
   border: 1px solid rgb(202, 77, 5) !important;
   // background-color: rgba(188, 72, 4, 0.945) !important;
-  background: linear-gradient(
+  background-image: linear-gradient(
     rgba(169, 65, 4, 0.945),
     rgb(217, 79, 0)
   ) !important;
   color: white !important;
   width: 45%;
+  box-shadow: 0 1rem 3rem rgba(226, 222, 222, 0.2);
+  transition: all 0.3s !important;
+
+  &:hover {
+    box-shadow: 0 1rem 3rem rgba(226, 222, 222, 0.5);
+    background-image: linear-gradient(
+      rgb(217, 79, 0),
+      rgba(169, 65, 4, 0.945)
+    ) !important;
+  }
 }
 
 .borderss {
