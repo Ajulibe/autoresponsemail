@@ -292,8 +292,20 @@ function Selectmail(props) {
       {/* second column */}
       <div
         className="col-12 col-md-12 d-flex justify-content-md-center justify-content-center"
-        style={{}}
+        style={{ position: "relative" }}
       >
+        <img
+          alt="payments logo"
+          src={payments}
+          style={{
+            position: "absolute",
+            maxWidth: "80%",
+            height: "70vh",
+            top: "0",
+            left: "20%",
+            opacity: "7%",
+          }}
+        ></img>
         <form
           style={{
             marginTop: "0%",
