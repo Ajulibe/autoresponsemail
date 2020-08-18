@@ -303,7 +303,7 @@ function Selectmail(props) {
             height: "70vh",
             top: "0",
             left: "20%",
-            opacity: "13%",
+            opacity: "8%",
           }}
         ></img>
         <form
@@ -907,9 +907,7 @@ function Selectmail(props) {
                                     <td>Balance check</td>
                                     <td>
                                       NGN
-                                      <span style={{ color: "#DE98FF" }}>
-                                        10.00
-                                      </span>
+                                      <span style={{}}>10.00</span>
                                     </td>
                                   </tr>
                                   <tr>
@@ -917,9 +915,7 @@ function Selectmail(props) {
                                     <td>Transaction history</td>
                                     <td>
                                       NGN
-                                      <span style={{ color: "#DE98FF" }}>
-                                        75.00
-                                      </span>
+                                      <span style={{}}>75.00</span>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -952,9 +948,7 @@ function Selectmail(props) {
 
                                     <td>
                                       NGN
-                                      <span style={{ color: "#DE98FF" }}>
-                                        10.00
-                                      </span>
+                                      <span style={{}}>10.00</span>
                                     </td>
                                   </tr>
                                   <tr>
@@ -962,9 +956,7 @@ function Selectmail(props) {
                                     <td>Intrabank transfer</td>
                                     <td>
                                       NGN
-                                      <span style={{ color: "#DE98FF" }}>
-                                        10.00
-                                      </span>
+                                      <span style={{}}>10.00</span>
                                     </td>
                                   </tr>
                                 </tbody>
