@@ -302,7 +302,7 @@ function Selectmail(props) {
             maxWidth: "80%",
             height: "70vh",
             top: "0",
-            left: "20%",
+            margin: "0 auto",
             opacity: "8%",
           }}
         ></img>
